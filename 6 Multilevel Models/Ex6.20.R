@@ -1,3 +1,6 @@
+connect <- url('https://raw.githubusercontent.com/blimp-stats/rblimp-examples/main/Data/Ex6.20.RDS', 'rb')
+data <- readRDS(connect); close(connect)
+
 library(fdir)
 library(rblimp)
 

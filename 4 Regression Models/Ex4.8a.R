@@ -1,7 +1,11 @@
+connect <- url('https://raw.githubusercontent.com/blimp-stats/rblimp-examples/main/Data/Ex4.8.RDS', 'rb')
+data <- readRDS(connect); close(connect)
+
+library(fdir)
 library(rblimp)
 
-connect <- url('https://raw.githubusercontent.com/blimp-stats/rblimp-examples/main/Data/data4.rda', 'rb')
-load(connect); close(connect)
+set()
+load(file = 'Ex4.8.RDS')
 
 mymodel <- rblimp(
    data = data4,
@@ -15,5 +19,5 @@ mymodel <- rblimp(
    burn = 1000,
    iter = 10000)
 output(mymodel)
-simple_plot(y ~ x | m.1, mymodel)
+
 

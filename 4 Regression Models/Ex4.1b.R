@@ -1,7 +1,8 @@
+library(fdir)
 library(rblimp)
 
-connect <- url('https://raw.githubusercontent.com/blimp-stats/rblimp-examples/main/Data/data1.rda', 'rb')
-load(connect); close(connect)
+set()
+load(file = 'data1.rda')
 
 mymodel <- rblimp(
    data = data1,
@@ -11,8 +12,6 @@ mymodel <- rblimp(
    burn = 10000,
    iter = 10000,
    options = 'use_phantom')
-
 output(mymodel)
-posterior_plot(mymodel)
 
 

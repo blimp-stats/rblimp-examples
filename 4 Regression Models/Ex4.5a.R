@@ -1,7 +1,11 @@
+connect <- url('https://raw.githubusercontent.com/blimp-stats/rblimp-examples/main/Data/Ex4.5.RDS', 'rb')
+data <- readRDS(connect); close(connect)
+
+library(fdir)
 library(rblimp)
 
-connect <- url('https://raw.githubusercontent.com/blimp-stats/rblimp-examples/main/Data/data2.rda', 'rb')
-load(connect); close(connect)
+set()
+load(file = 'data2.rda')
 
 mymodel <- rblimp(
    data = data2,

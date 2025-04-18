@@ -1,9 +1,10 @@
-# remotes::install_github("simsem/semTools/semTools")
-# remotes::install_github("TDJorgensen/lavaan.mi")
+connect <- url('https://raw.githubusercontent.com/blimp-stats/rblimp-examples/main/Data/Ex5.11.RDS', 'rb')
+data <- readRDS(connect); close(connect)
 
 library(fdir)
 library(rblimp)
-library(lavaan.mi)
+library(semTools)
+library(lavaan)
 
 set()
 load(file = 'data12.rda')
