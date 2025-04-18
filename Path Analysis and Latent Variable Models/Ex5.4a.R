@@ -1,0 +1,23 @@
+library(fdir)
+library(rblimp)
+
+set()
+load(file = 'data4a.rda')
+
+mymodel <- rblimp(
+   data = data4a,
+   ordinal = 'm',
+   center = 'x',
+   model = ' 
+   mediation.model:
+   m ~ x@alpha;
+   y ~ m.latent@beta x;
+   auxiliary.model:
+   a1:a3 ~ y m.latent x',
+   parameters = 'indirect = alpha * beta',
+   seed = 90291,
+   burn = 10000,
+   iter = 10000)
+output(mymodel)
+
+
