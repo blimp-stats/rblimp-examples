@@ -1,15 +1,11 @@
-connect <- url('https://raw.githubusercontent.com/blimp-stats/rblimp-examples/main/Data/Ex4.9.RDS', 'rb')
-data <- readRDS(connect); close(connect)
-
-library(fdir)
 library(rblimp)
 library(mitml)
 
-set()
-load(file = 'data4.rda')
+connect <- url('https://raw.githubusercontent.com/blimp-stats/rblimp-examples/main/Data/Ex4.9.RDS', 'rb')
+data <- readRDS(connect); close(connect)
 
 mymodel <- rblimp_fcs(
-   data = data4,
+   data = data,
    ordinal = 'd',
    variables = 'a1:a3 y x d',
    seed = 90291,

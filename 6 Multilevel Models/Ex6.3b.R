@@ -1,13 +1,10 @@
-library(fdir)
 library(rblimp)
+
 library(lme4)
 library(mitml)
 
-set()
-load(file = 'data8.rda')
-
 mymodel <- rblimp(
-   data = data8,
+   data = data,
    clusterid = 'level2id',
    ordinal = 'd_j',
    fixed = 'd_j',
@@ -19,6 +16,7 @@ mymodel <- rblimp(
    iter = 10000,
    chains = 20,
    nimps = 20)
+
 output(mymodel)
 
 # inspect variable names
@@ -42,3 +40,4 @@ results <- with(implist, lmer('y_i ~ x1cwc_i + I(x2_i - mean_x2)
    + I(x3_j - mean_x3) + I(d_j - mean_d) + (1 + x1cwc_i|level2id)', REML = T)
 )
 testEstimates(results, extra.pars = T)
+posterior_plot(mymodel)

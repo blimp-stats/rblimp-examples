@@ -1,14 +1,10 @@
+library(rblimp)
+
 connect <- url('https://raw.githubusercontent.com/blimp-stats/rblimp-examples/main/Data/Ex7.8.RDS', 'rb')
 data <- readRDS(connect); close(connect)
 
-library(fdir)
-library(rblimp)
-
-set()
-load(file = 'data8.rda')
-
 mymodel <- rblimp(
-   data = data8,
+   data = data,
    clusterid = 'level2id',
    ordinal = 'd_j ymis_i;',
    transform = 'ymis_i = ismissing(y_i)',
@@ -23,6 +19,8 @@ mymodel <- rblimp(
    seed = 90291,
    burn = 10000,
    iter = 20000)
+
 output(mymodel)
 
 
+posterior_plot(mymodel)

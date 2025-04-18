@@ -1,14 +1,10 @@
+library(rblimp)
+
 connect <- url('https://raw.githubusercontent.com/blimp-stats/rblimp-examples/main/Data/Ex7.3.RDS', 'rb')
 data <- readRDS(connect); close(connect)
 
-library(fdir)
-library(rblimp)
-
-set()
-load(file = 'data24.rda')
-
 mymodel <- rblimp(
-   data = data24,
+   data = data,
    ordinal = 'd2 d3 d4 d5 d6',
    latent = 'icept slope',
    model = '
@@ -38,6 +34,8 @@ mymodel <- rblimp(
    seed = 90291,
    burn = 100000,
    iter = 10000)
+
 output(mymodel)
 
 
+posterior_plot(mymodel)

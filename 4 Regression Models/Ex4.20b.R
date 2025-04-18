@@ -1,11 +1,11 @@
-library(fdir)
 library(rblimp)
+library(mitml)
 
-set()
-load(file = 'data2.rda')
+connect <- url('https://raw.githubusercontent.com/blimp-stats/rblimp-examples/main/Data/Ex4.20.RDS', 'rb')
+data <- readRDS(connect); close(connect)
 
 mymodel <- rblimp(
-   data = data2,
+   data = data,
    ordinal = 'd',
    fixed = 'x1',
    center = 'x1 x2',
@@ -15,6 +15,7 @@ mymodel <- rblimp(
    iter = 10000,
    chains = 20,
    nimps = 20)
+
 output(mymodel)
 
 # inspect variable names
@@ -26,7 +27,7 @@ implist <- as.mitml(mymodel)
 # plot raw and transformed scores
 dat2plot <- do.call(rbind, implist)
 hist(dat2plot$y,breaks = 20)
-hist(dat2plot$yjt.yjt.y.9..,breaks = 20)
+hist(dat2plot$yjt.y.9.,breaks = 20)
 
 # pooled grand means
 mean_x1 <- mean(unlist(lapply(implist, function(data) mean(data$x1))))
@@ -37,10 +38,6 @@ results <- with(implist, lm(y ~ I(x1 - mean_x1)  + I(x2 - mean_x2) + d))
 testEstimates(results, extra.pars = T, df.com = 1996)
 
 # analyze normalized outcome
-results <- with(implist, lm(yjt.yjt.y.9.. ~ I(x1 - mean_x1)  + I(x2 - mean_x2) + d))
-mitml::testEstimates(results, extra.pars = T, df.com = 1996)
-
-
-
-
+results <- with(implist, lm(yjt.y.9. ~ I(x1 - mean_x1)  + I(x2 - mean_x2) + d))
+testEstimates(results, extra.pars = T, df.com = 1996)
 

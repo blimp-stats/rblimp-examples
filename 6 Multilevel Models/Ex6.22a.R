@@ -1,15 +1,10 @@
+library(rblimp)
+
 connect <- url('https://raw.githubusercontent.com/blimp-stats/rblimp-examples/main/Data/Ex6.22.RDS', 'rb')
 data <- readRDS(connect); close(connect)
 
-library(fdir)
-library(rblimp)
-
-set()
-
-load(file = 'mcneish_hamaker_2020.rda')
-
 mymodel <- rblimp(
-   data = mcneish_hamaker_2020,
+   data = data,
    clusterid = 'level2id',
    transform = 'ylag_i = lag1(y_i,
    time,
@@ -29,3 +24,4 @@ mymodel <- rblimp(
    iter = 10000)
 
 
+posterior_plot(mymodel)

@@ -1,14 +1,10 @@
+library(rblimp)
+
 connect <- url('https://raw.githubusercontent.com/blimp-stats/rblimp-examples/main/Data/Ex5.3.RDS', 'rb')
 data <- readRDS(connect); close(connect)
 
-library(fdir)
-library(rblimp)
-
-set()
-load(file = 'data20.rda')
-
 mymodel <- rblimp(
-   data = data20,
+   data = data,
    ordinal = 'y',
    center = 'x',
    model = '
@@ -36,3 +32,4 @@ mymodel <- rblimp(
    output = 'default wald pvalue')
 
 
+posterior_plot(mymodel)

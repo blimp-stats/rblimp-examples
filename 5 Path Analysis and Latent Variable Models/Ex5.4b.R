@@ -1,11 +1,7 @@
-library(fdir)
 library(rblimp)
 
-set()
-load(file = 'data4.rda')
-
 mymodel <- rblimp(
-   data = data4,
+   data = data,
    ordinal = 'm',
    transform = 'm = ifelse(m7pt <= 4, 0, 1)',
    center = 'x',
@@ -28,3 +24,4 @@ mymodel <- rblimp(
    burn = 10000,
    iter = 10000,
    output = 'default wald pvalue')
+posterior_plot(mymodel)

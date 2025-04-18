@@ -1,11 +1,7 @@
-library(fdir)
 library(rblimp)
 
-set()
-load(file = 'RICLPM.rda')
-
 mymodel <- rblimp(
-   data = RICLPM,
+   data = data,
    ordinal = 'z1',
    latent = 'RIx RIy',
    model = ' 
@@ -40,6 +36,8 @@ mymodel <- rblimp(
    seed = 90291,
    burn = 5000,
    iter = 10000)
+
 output(mymodel)
 
 
+posterior_plot(mymodel)

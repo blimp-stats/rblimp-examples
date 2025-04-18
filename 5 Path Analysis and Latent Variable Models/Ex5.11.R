@@ -1,16 +1,13 @@
+library(rblimp)
+
 connect <- url('https://raw.githubusercontent.com/blimp-stats/rblimp-examples/main/Data/Ex5.11.RDS', 'rb')
 data <- readRDS(connect); close(connect)
 
-library(fdir)
-library(rblimp)
 library(semTools)
 library(lavaan)
 
-set()
-load(file = 'data12.rda')
-
 mymodel <- rblimp(
-   data = data12,
+   data = data,
    latent = 'latentx latenty',
    model = '
    structural.model:
@@ -27,6 +24,7 @@ mymodel <- rblimp(
    iter = 10000,
    chains = 20,
    nimps = 20)
+
 output(mymodel)
 
 # inspect variable names
@@ -53,3 +51,4 @@ summary(results, standardized = T, fit = T)
 modindices.mi(results, op = c("~~","=~"), minimum.value = 3, sort. = T)
 
 
+posterior_plot(mymodel)

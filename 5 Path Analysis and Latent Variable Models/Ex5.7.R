@@ -1,14 +1,10 @@
+library(rblimp)
+
 connect <- url('https://raw.githubusercontent.com/blimp-stats/rblimp-examples/main/Data/Ex5.7.RDS', 'rb')
 data <- readRDS(connect); close(connect)
 
-library(fdir)
-library(rblimp)
-
-set()
-load(file = 'data4.rda')
-
 mymodel <- rblimp(
-   data = data4,
+   data = data,
    latent = 'latenty latentx',
    model = ' 
    latent.model:
@@ -25,6 +21,8 @@ mymodel <- rblimp(
    seed = 90291,
    burn = 10000,
    iter = 10000)
+
 output(mymodel)
 
 
+posterior_plot(mymodel)

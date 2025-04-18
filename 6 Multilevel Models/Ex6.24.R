@@ -1,12 +1,7 @@
-library(fdir)
 library(rblimp)
 
-set()
-
-load(file = 'mcneish_hamaker_2020.rda')
-
 mymodel <- rblimp(
-   data = mcneish_hamaker_2020,
+   data = data,
    clusterid = 'level2id',
    transform = 'ylag_i = lag1(y_i,
    time,
@@ -37,6 +32,8 @@ mymodel <- rblimp(
    seed = 90291,
    burn = 20000,
    iter = 20000)
+
 output(mymodel)
 
 
+posterior_plot(mymodel)

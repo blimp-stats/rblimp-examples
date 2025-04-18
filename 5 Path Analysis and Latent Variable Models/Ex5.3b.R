@@ -1,11 +1,7 @@
-library(fdir)
 library(rblimp)
 
-set()
-load(file = 'data20.rda')
-
 mymodel <- rblimp(
-   data = data20,
+   data = data,
    ordinal = 'y',
    center = 'x',
    model = '
@@ -23,6 +19,8 @@ mymodel <- rblimp(
    seed = 90291,
    burn = 1000,
    iter = 10000)
+
 output(mymodel)
 
 
+posterior_plot(mymodel)

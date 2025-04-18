@@ -1,11 +1,7 @@
-library(fdir)
 library(rblimp)
 
-set()
-load(file = 'data8.rda')
-
 mymodel <- rblimp(
-   data = data8,
+   data = data,
    clusterid = 'level2id',
    ordinal = 'd_j',
    latent = 'level2id = beta0_j beta1_j',
@@ -24,6 +20,8 @@ mymodel <- rblimp(
    seed = 90291,
    burn = 10000,
    iter = 10000)
+
 output(mymodel)
 
 
+posterior_plot(mymodel)

@@ -1,14 +1,10 @@
+library(rblimp)
+
 connect <- url('https://raw.githubusercontent.com/blimp-stats/rblimp-examples/main/Data/Ex3.RDS', 'rb')
 data <- readRDS(connect); close(connect)
 
-library(fdir)
-library(rblimp)
-
-set()
-load(file = 'data8.rda')
-
 mymodel <- rblimp(
-   data = data8,
+   data = data,
    clusterid = 'level2id',
    ordinal = 'd1.j',
    fixed = 'd1.j',
@@ -19,6 +15,7 @@ mymodel <- rblimp(
    burn = 10000,
    iter = 10000,
    options = 'labels')
+
 output(mymodel)
 
 
