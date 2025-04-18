@@ -3,29 +3,29 @@ Blimp User Guide Examples in rblimp
 
 CHAPTER 4: REGRESSION MODEL ANALYSIS EXAMPLES
 
-4.1: Correlations and Descriptive Statistics
-4.2: Polychoric Correlations With Latent Response Variables
-4.3: Linear Regression
-4.4: Model-Based Multiple Imputation 
-4.5: Linear Regression With Nominal Predictors 
-4.6: Fully Conditional Specification Multiple Imputation
-4.7: Auxiliary Variables
-4.8: Moderated Regression With an Interaction
-4.9: Multiple Imputation Within Subgroups
-4.10: Curvilinear Regression
-4.11: Probit Regression With a Binary Outcome
-4.12: Probit Regression With an Ordinal Outcome
-4.13: Logistic Regression With a Binary Outcome
-4.14: Logistic Regression With a Multicategorical Outcome
-4.15: Count Regression
-4.16: Zero-Inflated Count Outcome
-4.17: Scale Scores With Incomplete Item Responses
-4.18: Scale Score Interactions
-4.19: Skewed Predictor With a Yeo-Johnson Transform
-4.20: Skewed Outcome With a Yeo-Johnson Transform
-4.21: Propensity Score Estimation With Missing Data
-4.22: Sampling Weights
-4.23: Wald Significance Tests
+4.1: Correlations and Descriptive Statistics  
+4.2: Polychoric Correlations With Latent Response Variables  
+4.3: Linear Regression  
+4.4: Model-Based Multiple Imputation   
+4.5: Linear Regression With Nominal Predictors   
+4.6: Fully Conditional Specification Multiple Imputation  
+4.7: Auxiliary Variables  
+4.8: Moderated Regression With an Interaction  
+4.9: Multiple Imputation Within Subgroups  
+4.10: Curvilinear Regression  
+4.11: Probit Regression With a Binary Outcome  
+4.12: Probit Regression With an Ordinal Outcome  
+4.13: Logistic Regression With a Binary Outcome  
+4.14: Logistic Regression With a Multicategorical Outcome  
+4.15: Count Regression  
+4.16: Zero-Inflated Count Outcome  
+4.17: Scale Scores With Incomplete Item Responses  
+4.18: Scale Score Interactions  
+4.19: Skewed Predictor With a Yeo-Johnson Transform  
+4.20: Skewed Outcome With a Yeo-Johnson Transform  
+4.21: Propensity Score Estimation With Missing Data  
+4.22: Sampling Weights  
+4.23: Wald Significance Tests  
 
 CHAPTER 5: PATH ANALYSIS AND LATENT VARIABLE MODEL EXAMPLES
 
