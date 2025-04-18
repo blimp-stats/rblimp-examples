@@ -1,8 +1,7 @@
-library(fdir)
 library(rblimp)
 
-set()
-load(file = 'data2.rda')
+connect <- url('https://raw.githubusercontent.com/blimp-stats/rblimp-examples/main/Data/data2.rda', 'rb')
+load(connect); close(connect)
 
 mymodel <- rblimp(
    data = data2,

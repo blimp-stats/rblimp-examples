@@ -1,9 +1,9 @@
-library(fdir)
 library(rblimp)
 library(mitml)
 
-set()
-load(file = 'data1.rda')
+connect <- url('https://raw.githubusercontent.com/blimp-stats/rblimp-examples/main/Data/data1.rda', 'rb')
+load(connect); close(connect)
+
 
 mymodel <- rblimp(
   data = data1,
