@@ -17,7 +17,8 @@ mymodel1 <- rblimp(
    iter = 10000)
 
 output(mymodel1)
-posterior_plot(mymodel1)
+posterior_plot(mymodel1,'y_i')
+simple_plot(y_i ~ x_i | m_j, mymodel1)
 
 # latent variable specification
 mymodel2 <- rblimp(

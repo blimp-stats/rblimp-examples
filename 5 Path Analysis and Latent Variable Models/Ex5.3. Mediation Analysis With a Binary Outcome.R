@@ -4,7 +4,7 @@ connect <- url('https://raw.githubusercontent.com/blimp-stats/rblimp-examples/ma
 data <- readRDS(connect); close(connect)
 
 # probit outcome model
-mymodel <- rblimp(
+mymodel1 <- rblimp(
   data = data,
   ordinal = 'y',
   center = 'x',
@@ -29,16 +29,18 @@ mymodel <- rblimp(
   burn = 1000,
   iter = 10000)
 
-output(mymodel)
-posterior_plot(mymodel)
+output(mymodel1)
+posterior_plot(mymodel1,'ab_xval1')
+posterior_plot(mymodel1,'ab_xval2')
+posterior_plot(mymodel1,'ab_xval3')
+posterior_plot(mymodel1)
 
 # logistic outcome model
-mymodel <- rblimp(
+mymodel2 <- rblimp(
   data = data,
   ordinal = 'y',
   center = 'x',
   model = '
-   mediation.model:
    m ~ 1@m_icept x@alpha;
    logit(y) ~ 1@y_icept m@beta x@tau;',
   parameters = 'xvalue1 = -.50;
@@ -51,5 +53,8 @@ mymodel <- rblimp(
   burn = 1000,
   iter = 10000)
 
-output(mymodel)
-posterior_plot(mymodel)
+output(mymodel2)
+posterior_plot(mymodel2,'ab_xval1')
+posterior_plot(mymodel2,'ab_xval2')
+posterior_plot(mymodel2,'ab_xval3')
+posterior_plot(mymodel2)

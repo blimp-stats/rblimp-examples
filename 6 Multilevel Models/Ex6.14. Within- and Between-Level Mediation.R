@@ -4,10 +4,10 @@ connect <- url('https://raw.githubusercontent.com/blimp-stats/rblimp-examples/ma
 data <- readRDS(connect); close(connect)
 
 mymodel <- rblimp(
-   data = data,
-   clusterid = 'level2id',
-   latent = 'level2id = xmean_j mmean_j ymean_j alpha_j beta_j tau_j',
-   model = '
+  data = data,
+  clusterid = 'level2id',
+  latent = 'level2id = xmean_j mmean_j ymean_j alpha_j beta_j tau_j',
+  model = '
    level2.mediation:
    mmean_j ~ xmean_j@alpha_b;
    ymean_j ~ mmean_j@beta_b xmean_j@tau_b;
@@ -21,14 +21,15 @@ mymodel <- rblimp(
    alpha_j ~~ beta_j@ab_cor;
    level1.models:
    x_i ~ 1@xmean_j',
-   parameters = 'ab_cov = ab_cor * sqrt(alpha_j.totalvar * beta_j.totalvar);
+  parameters = '
+   ab_cov = ab_cor * sqrt(alpha_j.totalvar * beta_j.totalvar);
    ab_w = alpha_mean * beta_mean + ab_cov;
    ab_b = alpha_b * beta_b',
-   seed = 90291,
-   burn = 10000,
-   iter = 10000)
+  seed = 90291,
+  burn = 10000,
+  iter = 10000)
 
 output(mymodel)
-
-
+posterior_plot(mymodel,'ab_w')
+posterior_plot(mymodel,'ab_b')
 posterior_plot(mymodel)

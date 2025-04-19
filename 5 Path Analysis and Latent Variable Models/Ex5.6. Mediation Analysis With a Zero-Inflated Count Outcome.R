@@ -24,4 +24,6 @@ mymodel <- rblimp(
   iter = 10000)
 
 output(mymodel)
+posterior_plot(mymodel,'ab_at_x0')
+posterior_plot(mymodel,'ab_at_x1')
 posterior_plot(mymodel)

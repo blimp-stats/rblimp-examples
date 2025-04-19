@@ -19,9 +19,14 @@ mymodel <- rblimp(
    latenty -> y1@yload_prior y2:y6',
   parameters = 'xload_prior ~ truncate(0, Inf);
    yload_prior ~ truncate(0, Inf)',
+  simple = '
+   x | d;
+   latentm | d',
   seed = 90291,
   burn = 50000,
   iter = 50000)
 
 output(mymodel)
 posterior_plot(mymodel)
+simple_plot(latentm ~ x | d, mymodel)
+simple_plot(latenty ~ latentm | d, mymodel)

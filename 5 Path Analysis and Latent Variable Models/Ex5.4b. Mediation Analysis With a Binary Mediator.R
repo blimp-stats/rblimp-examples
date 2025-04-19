@@ -8,7 +8,6 @@ mymodel <- rblimp(
   ordinal = 'm',
   center = 'x',
   model = '
-    mediation.model:
     logit(m) ~ 1@m_icept x@alpha;
     y ~ m@beta x;',
   parameters = '
@@ -26,4 +25,7 @@ mymodel <- rblimp(
   iter = 10000)
 
 output(mymodel)
+posterior_plot(mymodel,'ab_xval1')
+posterior_plot(mymodel,'ab_xval2')
+posterior_plot(mymodel,'ab_xval3')
 posterior_plot(mymodel)

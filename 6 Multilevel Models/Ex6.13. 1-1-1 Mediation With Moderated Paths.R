@@ -31,6 +31,7 @@ mymodel <- rblimp(
    iter = 10000)
 
 output(mymodel)
-
-
+posterior_plot(mymodel,'ab_low')
+posterior_plot(mymodel,'ab_med')
+posterior_plot(mymodel,'ab_high')
 posterior_plot(mymodel)

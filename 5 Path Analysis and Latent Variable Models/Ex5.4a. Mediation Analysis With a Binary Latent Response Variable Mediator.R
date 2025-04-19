@@ -8,7 +8,6 @@ mymodel <- rblimp(
   ordinal = 'm',
   center = 'x',
   model = ' 
-   mediation.model:
    m ~ x@alpha;
    y ~ m.latent@beta x;',
   parameters = 'indirect = alpha * beta',
@@ -17,4 +16,5 @@ mymodel <- rblimp(
   iter = 10000)
 
 output(mymodel)
+posterior_plot(mymodel,'indirect')
 posterior_plot(mymodel)

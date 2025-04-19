@@ -4,12 +4,12 @@ connect <- url('https://raw.githubusercontent.com/blimp-stats/rblimp-examples/ma
 data <- readRDS(connect); close(connect)
 
 mymodel <- rblimp(
-   data = data,
-   nominal = 'd_k',
-   clusterid = 'level2id level3id',
-   latent = 'level2id = beta0_j beta1_j;
+  data = data,
+  nominal = 'd_k',
+  clusterid = 'level2id level3id',
+  latent = 'level2id = beta0_j beta1_j;
    level3id = beta0_k beta1_k',
-   model = ' 
+  model = ' 
    level3.model:
    beta0_k ~ 1 d_k;
    beta1_k ~ 1 d_k;
@@ -20,11 +20,9 @@ mymodel <- rblimp(
    beta0_j ~~ beta1_j;
    level1.model:
    y_i ~ 1@beta0_j time_i@beta1_j',
-   seed = 90291,
-   burn = 30000,
-   iter = 30000)
+  seed = 90291,
+  burn = 30000,
+  iter = 30000)
 
 output(mymodel)
-
-
 posterior_plot(mymodel)

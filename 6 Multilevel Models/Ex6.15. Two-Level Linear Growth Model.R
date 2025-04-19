@@ -15,6 +15,5 @@ mymodel <- rblimp(
    iter = 10000)
 
 output(mymodel)
-
-
-posterior_plot(mymodel)
+posterior_plot(mymodel,'y_i')
+simple_plot(y_i ~ time_i | d_j.1, mymodel)

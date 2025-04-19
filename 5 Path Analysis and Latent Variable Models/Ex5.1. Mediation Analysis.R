@@ -8,13 +8,12 @@ mymodel <- rblimp(
   model = '
    mediation.model:
    m ~ x@alpha;
-   y ~ m@beta x;
-   auxiliary.model:
-   a1:a3 ~ y m x', 
+   y ~ m@beta x;', 
   parameters = 'indirect = alpha * beta',
   seed = 90291,
   burn = 1000,
   iter = 10000)
 
 output(mymodel)
+posterior_plot(mymodel,'indirect')
 posterior_plot(mymodel)
