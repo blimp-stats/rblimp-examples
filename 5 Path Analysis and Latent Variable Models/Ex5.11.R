@@ -7,9 +7,9 @@ library(semTools)
 library(lavaan)
 
 mymodel <- rblimp(
-   data = data,
-   latent = 'latentx latenty',
-   model = '
+  data = data,
+  latent = 'latentx latenty',
+  model = '
    structural.model:
    latentx ~~ latentx@1;
    latenty ~~ latenty@1;
@@ -19,11 +19,11 @@ mymodel <- rblimp(
    yjt(x2) ~ latentx;
    yjt(y1) ~ latenty;
    latenty -> y2 y3',
-   seed = 90291,
-   burn = 10000,
-   iter = 10000,
-   chains = 20,
-   nimps = 20)
+  seed = 90291,
+  burn = 10000,
+  iter = 10000,
+  chains = 20,
+  nimps = 20)
 
 output(mymodel)
 
@@ -39,8 +39,8 @@ hist(dat2plot$y1,breaks = 20)
 hist(dat2plot$yjt.yjt.y1..,breaks = 20)
 
 # specify cfa model with latent response imputations
-lavaan_model <- c('ylatent =~ x1 + yjt.yjt.x2.. + x3',
-                  'xlatent =~ yjt.yjt.y1.. + y2 + y3',
+lavaan_model <- c('ylatent =~ x1 + yjt.x2. + x3',
+                  'xlatent =~ yjt.y1. + y2 + y3',
                   'ylatent ~~ xlatent', 'ylatent ~~ 1*ylatent','xlatent ~~ 1*xlatent')
 
 # fit model with semtools and lavaan
@@ -49,6 +49,3 @@ summary(results, standardized = T, fit = T)
 
 # imputation-based modification indices
 modindices.mi(results, op = c("~~","=~"), minimum.value = 3, sort. = T)
-
-
-posterior_plot(mymodel)

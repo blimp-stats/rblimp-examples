@@ -4,11 +4,11 @@ connect <- url('https://raw.githubusercontent.com/blimp-stats/rblimp-examples/ma
 data <- readRDS(connect); close(connect)
 
 mymodel <- rblimp(
-   data = data,
-   ordinal = 'g',
-   fixed = 'g',
-   latent = 'latenty',
-   model = ' 
+  data = data,
+  ordinal = 'g',
+  fixed = 'g',
+  latent = 'latenty',
+  model = ' 
    structural.model:
    latenty ~ 1@0 g;
    var(latenty) ~ 1@0 g;
@@ -19,12 +19,12 @@ mymodel <- rblimp(
    y4 ~ g@difficept3 latenty g*latenty@diffload3;
    y5 ~ g@difficept4 latenty g*latenty@diffload4;
    y6 ~ g@difficept5 latenty g*latenty@diffload5',
-   waldtest = list('diffload1:diffload5 = 0','difficept1:difficept5 = 0'),
-   parameters = 'load_prior ~ truncate(0, Inf)',
-   simple = 'latenty | g',
-   seed = 90291,
-   burn = 20000,
-   iter = 10000)
+  waldtest = list('diffload1:diffload5 = 0','difficept1:difficept5 = 0'),
+  parameters = 'load_prior ~ truncate(0, Inf)',
+  simple = 'latenty | g',
+  seed = 90291,
+  burn = 20000,
+  iter = 10000)
 
 output(mymodel)
 posterior_plot(mymodel)

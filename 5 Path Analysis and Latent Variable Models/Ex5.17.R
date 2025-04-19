@@ -4,11 +4,11 @@ connect <- url('https://raw.githubusercontent.com/blimp-stats/rblimp-examples/ma
 data <- readRDS(connect); close(connect)
 
 mymodel <- rblimp(
-   data = data,
-   ordinal = 'd',
-   fixed = 'd',
-   latent = 'icept slope',
-   model = '
+  data = data,
+  ordinal = 'd',
+  fixed = 'd',
+  latent = 'icept slope',
+  model = '
    structural.model:
    icept ~ 1 d;
    slope ~ 1 d;
@@ -22,11 +22,9 @@ mymodel <- rblimp(
    y1 ~~ y1@resvar;
    y3 ~~ y3@resvar;
    y6 ~~ y6@resvar',
-   seed = 90291,
-   burn = 10000,
-   iter = 10000)
+  seed = 90291,
+  burn = 10000,
+  iter = 10000)
 
 output(mymodel)
-
-
 posterior_plot(mymodel)

@@ -4,9 +4,9 @@ connect <- url('https://raw.githubusercontent.com/blimp-stats/rblimp-examples/ma
 data <- readRDS(connect); close(connect)
 
 mymodel <- rblimp(
-   data = data,
-   latent = 'icept slope',
-   model = '
+  data = data,
+  latent = 'icept slope',
+  model = '
    ry1 = y1 - (icept + (0*slope));
    ry2 = y2 - (icept + (1*slope));
    ry3 = y3 - (icept + (2*slope));
@@ -23,12 +23,10 @@ mymodel <- rblimp(
    y4 ~ ry3@ac3;
    y5 ~ ry4@ac4;
    y6 ~ ry5@ac5',
-   waldtest = 'ac1 = ac2:ac5',
-   seed = 90291,
-   burn = 30000,
-   iter = 20000)
+  waldtest = 'ac1 = ac2:ac5',
+  seed = 90291,
+  burn = 30000,
+  iter = 20000)
 
 output(mymodel)
-
-
 posterior_plot(mymodel)

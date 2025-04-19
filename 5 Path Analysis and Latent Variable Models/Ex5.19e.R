@@ -1,9 +1,12 @@
 library(rblimp)
 
+connect <- url('https://raw.githubusercontent.com/blimp-stats/rblimp-examples/main/Data/Ex5.19.RDS', 'rb')
+data <- readRDS(connect); close(connect)
+
 mymodel <- rblimp(
-   data = data,
-   latent = 'RIx RIy',
-   model = '
+  data = data,
+  latent = 'RIx RIy',
+  model = '
    x1r = x1 - RIx;
    x2r = x2 - RIx;
    x3r = x3 - RIx;
@@ -36,11 +39,9 @@ mymodel <- rblimp(
    x5 ~~ y5;
    distal.outcome:
    z2 ~ x1r y1r x2r y2r x3r y3r x4r y4r x5r y5r',
-   seed = 90291,
-   burn = 5000,
-   iter = 10000)
+  seed = 90291,
+  burn = 5000,
+  iter = 10000)
 
 output(mymodel)
-
-
 posterior_plot(mymodel)

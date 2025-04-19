@@ -4,9 +4,9 @@ connect <- url('https://raw.githubusercontent.com/blimp-stats/rblimp-examples/ma
 data <- readRDS(connect); close(connect)
 
 mymodel <- rblimp(
-   data = data,
-   latent = 'latenty latentx',
-   model = ' 
+  data = data,
+  latent = 'latenty latentx',
+  model = ' 
    latent.model:
    latentx ~~ latentx@1;
    latenty ~~ latenty@1;
@@ -14,15 +14,13 @@ mymodel <- rblimp(
    measurement.models:
    latentx -> x1@xload_prior x2:x6;
    latenty -> y1@yload_prior y2:y6',
-   parameters = 'xload_prior ~ truncate(0,
+  parameters = 'xload_prior ~ truncate(0,
    Inf);
    yload_prior ~ truncate(0,
    Inf)',
-   seed = 90291,
-   burn = 10000,
-   iter = 10000)
+  seed = 90291,
+  burn = 10000,
+  iter = 10000)
 
 output(mymodel)
-
-
 posterior_plot(mymodel)

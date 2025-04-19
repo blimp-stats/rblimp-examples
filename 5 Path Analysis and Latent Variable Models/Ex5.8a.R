@@ -4,10 +4,10 @@ connect <- url('https://raw.githubusercontent.com/blimp-stats/rblimp-examples/ma
 data <- readRDS(connect); close(connect)
 
 mymodel <- rblimp(
-   data = data,
-   ordinal = 'y1:y6',
-   latent = 'ability',
-   model = '
+  data = data,
+  ordinal = 'y1:y6',
+  latent = 'ability',
+  model = '
    ability ~ 1@0;
    ability ~~ ability@1;
    logit(y1) ~ 1@icept1 ability@load1;
@@ -16,7 +16,7 @@ mymodel <- rblimp(
    logit(y4) ~ 1@icept4 ability@load4;
    logit(y5) ~ 1@icept5 ability@load5;
    logit(y6) ~ 1@icept6 ability@load6',
-   parameters = 'discrim1 = load1;
+  parameters = 'discrim1 = load1;
    discrim2 = load2;
    discrim3 = load3;
    discrim4 = load4;
@@ -28,11 +28,9 @@ mymodel <- rblimp(
    difficulty4 = - icept4 / load4;
    difficulty5 = - icept5 / load5;
    difficulty6 = - icept6 / load6',
-   seed = 90291,
-   burn = 2000,
-   iter = 10000)
+  seed = 90291,
+  burn = 2000,
+  iter = 10000)
 
 output(mymodel)
-
-
 posterior_plot(mymodel)

@@ -4,17 +4,17 @@ connect <- url('https://raw.githubusercontent.com/blimp-stats/rblimp-examples/ma
 data <- readRDS(connect); close(connect)
 
 mymodel <- rblimp(
-   data = data,
-   ordinal = 'y',
-   center = 'x',
-   model = '
+  data = data,
+  ordinal = 'y',
+  center = 'x',
+  model = '
    mediation.model:
    m ~ 1@m_icept x@alpha;
    m ~~ m@m_resvar;
    y ~ 1@y_icept m@beta x@tau;
    auxiliary.model:
    a1:a3 ~ y m x',
-   parameters = 'xvalue1 = -.50;
+  parameters = 'xvalue1 = -.50;
    xvalue2 = 0;
    xvalue3 = .50;
    ab_xval1 = phi((y_icept + beta*m_icept + 
@@ -26,9 +26,9 @@ mymodel <- rblimp(
    ab_xval3 = phi((y_icept + beta*m_icept +  
       beta*alpha*xvalue3 + tau*xvalue3)/
       sqrt(beta^2*m_resvar + 1))',
-   seed = 90291,
-   burn = 1000,
-   iter = 10000)
+  seed = 90291,
+  burn = 1000,
+  iter = 10000)
 
 output(mymodel)
 posterior_plot(mymodel)

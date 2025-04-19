@@ -4,10 +4,10 @@ connect <- url('https://raw.githubusercontent.com/blimp-stats/rblimp-examples/ma
 data <- readRDS(connect); close(connect)
 
 mymodel <- rblimp(
-   data = data,
-   transform = 'm.mis = ismissing(m);
+  data = data,
+  transform = 'm.mis = ismissing(m);
    y.mis = ismissing(y)',
-   model = ' 
+  model = ' 
    mediation.model:
    m ~ x@alpha;
    y ~ m@beta x;
@@ -16,12 +16,10 @@ mymodel <- rblimp(
    y.mis ~ y m x;
    auxiliary.model:
    a1:a3 ~ y m x',
-   parameters = 'indirect = alpha * beta',
-   seed = 90291,
-   burn = 2000,
-   iter = 10000)
+  parameters = 'indirect = alpha * beta',
+  seed = 90291,
+  burn = 2000,
+  iter = 10000)
 
 output(mymodel)
-
-
 posterior_plot(mymodel)

@@ -1,9 +1,9 @@
 library(rblimp)
 
 mymodel <- rblimp(
-   data = data,
-   latent = 'icept slope',
-   model = '
+  data = data,
+  latent = 'icept slope',
+  model = '
    ry1 = y1 - (icept + (0*slope));
    ry2 = y2 - (icept + (1*slope));
    ry3 = y3 - (icept + (2*slope));
@@ -20,11 +20,9 @@ mymodel <- rblimp(
    y4 ~ ry3@ac;
    y5 ~ ry4@ac;
    y6 ~ ry5@ac',
-   seed = 90291,
-   burn = 20000,
-   iter = 20000)
+  seed = 90291,
+  burn = 20000,
+  iter = 20000)
 
 output(mymodel)
-
-
 posterior_plot(mymodel)
