@@ -1,5 +1,5 @@
 # rblimp-examples
-Blimp User Guide Examples in rblimp 
+Blimp User Guide Examples in rblimp
 
 CHAPTER 4: REGRESSION MODEL ANALYSIS EXAMPLES
 
