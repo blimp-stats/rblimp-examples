@@ -1,5 +1,5 @@
 library(rblimp)
-library(semTools)
+library(lavaan.mi)
 library(lavaan)
 
 connect <- url('https://raw.githubusercontent.com/blimp-stats/rblimp-examples/main/Data/Ex5.10.RDS', 'rb')
