@@ -19,6 +19,4 @@ mymodel <- rblimp(
    iter = 10000)
 
 output(mymodel)
-
-
 posterior_plot(mymodel)

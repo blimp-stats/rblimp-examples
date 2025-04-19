@@ -1,5 +1,8 @@
 library(rblimp)
 
+connect <- url('https://raw.githubusercontent.com/blimp-stats/rblimp-examples/main/Data/Ex5.8.RDS', 'rb')
+data <- readRDS(connect); close(connect)
+
 mymodel <- rblimp(
    data = data,
    ordinal = 'y1:y6',

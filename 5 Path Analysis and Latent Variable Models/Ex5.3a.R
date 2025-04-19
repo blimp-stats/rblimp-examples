@@ -28,8 +28,7 @@ mymodel <- rblimp(
       sqrt(beta^2*m_resvar + 1))',
    seed = 90291,
    burn = 1000,
-   iter = 10000,
-   output = 'default wald pvalue')
+   iter = 10000)
 
-
+output(mymodel)
 posterior_plot(mymodel)
