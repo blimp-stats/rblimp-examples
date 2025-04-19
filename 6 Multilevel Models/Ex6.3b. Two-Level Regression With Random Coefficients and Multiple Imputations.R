@@ -21,7 +21,7 @@ mymodel <- rblimp(
    nimps = 20)
 
 output(mymodel)
-posterior_plot(mymodel,'y_1')
+posterior_plot(mymodel,'y_i')
 
 # inspect variable names
 names(mymodel@imputations[[1]])

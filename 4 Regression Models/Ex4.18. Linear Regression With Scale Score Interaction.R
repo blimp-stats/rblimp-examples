@@ -13,7 +13,7 @@ mymodel <- rblimp(
    predictor.model:
    x1:x7 m ~ 1; 
    auxiliary.model:
-   y1:y5 ~ yscale', 
+   y1:y5 ~ yscale',
    seed = 90291,
    burn = 20000,
    iter = 10000)

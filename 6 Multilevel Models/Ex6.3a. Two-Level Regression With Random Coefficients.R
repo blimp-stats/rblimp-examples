@@ -17,4 +17,4 @@ mymodel <- rblimp(
    iter = 10000)
 
 output(mymodel)
-posterior_plot(mymodel,'y_1')
+posterior_plot(mymodel,'y_i')
