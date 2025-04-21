@@ -36,7 +36,7 @@ mymodel <- rblimp(
 output(mymodel)
 posterior_plot(mymodel)
 
-# Johnson-Neyman regions of significance for two-way interactions
+# Johnson-Neyman regions of significance for two-way effects and values of the moderator
 params <- as.matrix(mymodel)
 
 (
