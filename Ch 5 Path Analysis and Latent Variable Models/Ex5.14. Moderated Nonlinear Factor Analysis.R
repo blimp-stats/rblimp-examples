@@ -28,4 +28,9 @@ mymodel <- rblimp(
 
 output(mymodel)
 posterior_plot(mymodel)
+
 simple_plot(y2 ~ latenty | g, mymodel)
+simple_plot(y3 ~ latenty | g, mymodel)
+simple_plot(y4 ~ latenty | g, mymodel)
+simple_plot(y5 ~ latenty | g, mymodel)
+simple_plot(y6 ~ latenty | g, mymodel)

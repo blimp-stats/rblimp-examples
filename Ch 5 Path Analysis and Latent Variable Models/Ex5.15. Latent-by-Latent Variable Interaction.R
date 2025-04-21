@@ -34,4 +34,7 @@ mymodel <- rblimp(
 
 output(mymodel)
 posterior_plot(mymodel)
+
 simple_plot(latenty ~ latentx | latentm, mymodel)
+jn_plot(latenty ~ latentx | latentm, mymodel)
+

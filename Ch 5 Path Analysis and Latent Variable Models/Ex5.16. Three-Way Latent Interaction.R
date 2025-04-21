@@ -35,3 +35,23 @@ mymodel <- rblimp(
 
 output(mymodel)
 posterior_plot(mymodel)
+
+# Johnson-Neyman regions of significance for two-way interactions
+params <- as.matrix(mymodel)
+
+(
+  jn_plot_func(
+    compute_condeff(
+      params[, 'latenty.regressed on.latentx*latentz'],        # Get b4
+      params[, 'latenty.regressed on.latentx*latentz*latentm'] # Get b7
+    ),
+    xrange = c(-3, 3)
+  )
+  + ggplot2::labs(
+    title = 'Johnson-Neyman Plot for `latentx` * `latentz` Moderated by `latentm`',
+    subtitle = 'Red area represents 0 within 95% interval',
+    y = 'latenty regressed on latentx * latentz',
+    x = 'latentm'
+  )
+  + ggplot2::theme_minimal()
+)
