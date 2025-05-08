@@ -1,4 +1,5 @@
 library(rblimp)
+library(mitml)
 
 connect <- url('https://raw.githubusercontent.com/blimp-stats/rblimp-examples/main/Data/Ex4.13.RDS', 'rb')
 data <- readRDS(connect); close(connect)
@@ -31,13 +32,19 @@ mymodel <- rblimp(
    pp_diff = pp_d1 - pp_d0',
   seed = 90291,
   burn = 2000,
-  iter = 10000)
+  iter = 10000,
+  nimps = 20,
+  chains = 20)
 
 output(mymodel)
 posterior_plot(mymodel, 'y')
 
 # inspect variable names
-names(mymodel@average_imp)
+names(mymodel@imputations[[1]])
 
-# population-average predicted probabilities
-aggregate(y.predicted ~ round(d), data = mymodel@average_imp, FUN = mean)
+# compare marginal predicted probabilities by group
+implist <- as.mitml(mymodel)
+results <- with(implist, lm(y.predicted ~ 0 + d + I(1 - d)))
+testEstimates(results)
+confint.mitml.testEstimates(testEstimates(results))
+testConstraints(results, constraints = c("d - `I(1 - d)`"))
