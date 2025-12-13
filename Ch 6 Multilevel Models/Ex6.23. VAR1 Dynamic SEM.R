@@ -1,5 +1,4 @@
 library(rblimp)
-set_blimp('/applications/blimp/blimp-nightly')
 
 connect <- url('https://raw.githubusercontent.com/blimp-stats/rblimp-examples/main/Data/MCNEISH_HAMAKER_2020.RDS', 'rb')
 data <- readRDS(connect); close(connect)
@@ -7,7 +6,8 @@ data <- readRDS(connect); close(connect)
 # equation 7 and 8
 mymodel <- rblimp(
   data = data,
-  clusterid = 'level2id; timeid: time;',
+  clusterid = 'level2id',
+  timeid = 'time',
   latent = 'level2id = xmean_j ymean_j phi1_j phi2_j phi3_j phi4_j yvarlog_j xvarlog_j',
   model = '
    level2.models:
