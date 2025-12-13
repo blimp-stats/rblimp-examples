@@ -5,9 +5,8 @@ data <- readRDS(connect); close(connect)
 
 mymodel <- rblimp(
   data = data,
+  ordinal = 'dropout_i',
   clusterid = 'level2id',
-  timeid = 'time_i',
-  dropout = 'dropout = y_i',
   latent = 'level2id = beta0_j beta1_j',
   fixed = 'time_i',
   model = '
@@ -15,7 +14,7 @@ mymodel <- rblimp(
    growth.model:
    y_i ~ 1@beta0_j time_i@beta1_j;
    missingness.model:
-   dropout ~ 1@0 (time_i == 0)@-3 (time_i == 1) (time_i == 2) 
+   dropout_i ~ 1@0 (time_i == 0)@-3 (time_i == 1) (time_i == 2) 
       (time_i == 3) (time_i == 4) (time_i == 5)
       (time_i > 0)*beta0_j (time_i > 0)*beta1_j | 1@0',
   seed = 90291,
