@@ -45,6 +45,8 @@
 - 5.15: Latent-by-Latent Variable Interaction  
 - 5.16: Three-Way Latent Variable Interaction  
 - 5.17: Latent Growth Curve Model
+- 5.18: Residual SEM: AR1 Growth Model
+- 5.19: Random Intercept Cross-Lagged Panel Model (RI-CLPM)
 
 ## CHAPTER 6: MULTILEVEL MODEL ANALYSIS EXAMPLES
 
@@ -68,7 +70,10 @@
 - 6.18: Two-Level MIMIC Measurement Model  
 - 6.19: Sampling Weights  
 - 6.20: Partially Nested Designs (Singleton Clusters)  
-- 6.21: Discrete-Time Survival Model  
+- 6.21: Discrete-Time Survival Model
+- 6.22: AR(1) Dynamic SEM
+- 6.23: VAR(1) Dynamic SEM
+- 6.24: Random Effects Meta-Analysis With Known Variances 
 
 ## CHAPTER 7: MISSING NOT AT RANDOM PROCESSES
 
@@ -80,7 +85,8 @@
 - 7.6: Mediation Analysis With a Selection Model  
 - 7.7: Two-Level Hedeker-Gibbons Pattern Mixture Growth Model  
 - 7.8: Selection Model for a Two-Level Regression With Random Coefficients  
-- 7.9: Two-Level Shared Parameter Growth Curve Model  
+- 7.9: Two-Level Shared Parameter Growth Curve Model
+- 7.10: Two-Level Diggle–Kenward Growth Curve Model  
 
 
 
