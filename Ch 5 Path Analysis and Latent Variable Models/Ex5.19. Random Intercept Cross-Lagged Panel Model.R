@@ -154,6 +154,12 @@ mymodel4 <- rblimp(
    y3 ~ 1@muy3 RIy@1 y2r x2r;
    y4 ~ 1@muy4 RIy@1 y3r x3r;
    y5 ~ 1@muy5 RIy@1 y4r x4r;
+   covariances:
+   x1 ~~ y1;
+   x2 ~~ y2;
+   x3 ~~ y3;
+   x4 ~~ y4;
+   x5 ~~ y5;
    distal.outcome:
    z2 ~ RIx RIy',
   seed = 90291,
