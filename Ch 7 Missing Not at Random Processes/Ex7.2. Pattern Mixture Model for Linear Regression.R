@@ -12,7 +12,7 @@ mymodel <- rblimp(
   model = '
    focal.model:
    y ~ 1@b0obs ymis@b0diff d1 d2 x1 ;
-   y ~~ y@resvar;
+   y@resvar;
    predictor.model:
    ymis ~ 1@ymissmean;
    x1 d1 d2 ~ ymis;
@@ -41,7 +41,7 @@ mymodel <- rblimp(
   model = '
    focal.model:
    y ~ 1@b0obs m.y@b0diff d1@b1obs d1*m.y@b1diff d2 x1;
-   y ~~ y@resvar;
+   y@resvar;
    predictor.model:
    m.y ~ 1@ymissmean;
    x1 d1 d2 ~ m.y;

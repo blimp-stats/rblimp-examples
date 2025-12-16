@@ -9,8 +9,8 @@ mymodel <- rblimp(
   latent = 'latenty latentx',
   model = ' 
    latent.model:
-   latentx ~~ latentx@1;
-   latenty ~~ latenty@1;
+   latentx@1;
+   latenty@1;
    latentx ~~ latenty;
    measurement.model:
    latentx -> x1@xload_prior x2:x6;

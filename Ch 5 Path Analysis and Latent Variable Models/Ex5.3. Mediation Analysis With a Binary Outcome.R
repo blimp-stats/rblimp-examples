@@ -10,7 +10,7 @@ mymodel1 <- rblimp(
   model = '
    mediation.model:
    m ~ 1@m_icept x@alpha;
-   m ~~ m@m_resvar;
+   m@m_resvar;
    y ~ 1@y_icept m@beta x@tau;',
   parameters = '
    den = sqrt(beta^2*m_resvar + 1);

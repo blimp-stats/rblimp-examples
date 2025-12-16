@@ -12,8 +12,8 @@ mymodel <- rblimp(
   latent = 'latentx latenty',
   model = '
    structural.model:
-   latentx ~~ latentx@1;
-   latenty ~~ latenty@1;
+   latentx@1;
+   latenty@1;
    latentx ~~ latenty;
    measurement.models:
    latentx -> x1 x3;
