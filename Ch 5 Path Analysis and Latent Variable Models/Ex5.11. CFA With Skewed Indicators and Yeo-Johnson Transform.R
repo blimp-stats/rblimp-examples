@@ -3,8 +3,9 @@ library(rblimp)
 connect <- url('https://raw.githubusercontent.com/blimp-stats/rblimp-examples/main/Data/Ex5.11.RDS', 'rb')
 data <- readRDS(connect); close(connect)
 
-library(semTools)
+# library(semTools)
 library(lavaan)
+library(lavaan.mi)
 
 mymodel <- rblimp(
   data = data,
@@ -36,11 +37,11 @@ implist <- as.mitml(mymodel)
 # plot raw and transformed scores
 dat2plot <- do.call(rbind, implist)
 hist(dat2plot$y1,breaks = 20)
-hist(dat2plot$yjt.yjt.y1..,breaks = 20)
+hist(dat2plot$y1.yjt,breaks = 20)
 
 # specify cfa model with latent response imputations
-lavaan_model <- c('ylatent =~ x1 + yjt.x2. + x3',
-                  'xlatent =~ yjt.y1. + y2 + y3',
+lavaan_model <- c('ylatent =~ x1 + x2.yjt + x3',
+                  'xlatent =~ y1.yjt + y2 + y3',
                   'ylatent ~~ xlatent', 'ylatent ~~ 1*ylatent','xlatent ~~ 1*xlatent')
 
 # fit model with semtools and lavaan

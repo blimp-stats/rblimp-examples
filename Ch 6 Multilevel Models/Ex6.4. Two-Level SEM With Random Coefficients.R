@@ -8,7 +8,7 @@ mymodel <- rblimp(
    clusterid = 'level2id',
    ordinal = 'd_j',
    latent = 'level2id = beta0_j beta1_j',
-   fixed = 'd_j',
+   fixed = 'd_j',  
    center = '
     groupmean = x1_i;
     grandmean = x2_i x3_j d_j',
