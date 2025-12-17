@@ -38,3 +38,23 @@ mymodel <- rblimp(
 )
 
 output(mymodel)
+
+## Alternative shorthand specification 
+
+# random effects meta analysis
+mymodel <- rblimp(
+  data = data,
+  transform = 'log_varj = ln(var_j)',
+  clusterid = 'study',
+  latent = 'study = beta0_j',
+  model = '
+    beta0_j ~ intercept;
+    es_j ~ intercept@beta0_j;
+    var(es_j) ~ 1@0; # fix variance of each study
+    { i in 1:19 } : var(es_j) ~ (study==[i])@log_varj;',
+  seed = 90291,
+  burn = 10000,
+  iter = 10000
+)
+
+output(mymodel)

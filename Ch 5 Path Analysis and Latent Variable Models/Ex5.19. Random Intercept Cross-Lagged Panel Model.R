@@ -212,3 +212,127 @@ mymodel5 <- rblimp(
 
 output(mymodel5)
 posterior_plot(mymodel5)
+
+## Alternative shorthand specification 
+
+# basic riclpm
+mymodel1 <- rblimp(
+  data = data,
+  latent = 'RIx RIy',
+  model = ' 
+    { v in x y, i in 1:4 } : [v][i]r = [v][i] - (mu[v][i] + RI[v]);
+    random.intercept:
+    RIx ~~ RIy;
+    x.models:
+    x1 ~ 1@mux1 RIx@1;
+    { i in 2:5 } : x[i] ~ 1@mux[i] RIx@1 x[i-1]r y[i-1]r;
+    y.models:
+    y1 ~ 1@muy1 RIy@1;
+    { i in 2:5 } : y[i] ~ 1@muy[i] RIy@1 y[i-1]r x[i-1]r;
+    covariances:
+    { i in 1:5 } : x[i] ~~ y[i];',
+  seed = 90291,
+  burn = 5000,
+  iter = 10000)
+
+output(mymodel1)
+posterior_plot(mymodel1)
+
+# time-varying covariate
+mymodel2 <- rblimp(
+  data = data,
+  ordinal = 'z1',
+  latent = 'RIx RIy',
+  model = '
+    { v in x y, i in 1:4 } : [v][i]r = [v][i] - (mu[v][i] + RI[v] + z1*b[v][i]);
+    random.intercept:
+    RIx ~~ RIy;
+    x.models:
+    x1 ~ 1@mux1 RIx@1 z1@bx1;
+    { i in 2:5 } : x[i] ~ 1@mux[i] RIx@1 x[i-1]r y[i-1]r z1@bx[i];
+    y.models:
+    y1 ~ 1@muy1 RIy@1 z1@by1;
+    { i in 2:5 } : y[i] ~ 1@muy[i] RIy@1 y[i-1]r x[i-1]r z1@by[i];
+    covariances:
+    { i in 1:5 } : x[i] ~~ y[i];',
+  seed = 90291,
+  burn = 5000,
+  iter = 10000)
+
+output(mymodel2)
+posterior_plot(mymodel2)
+
+# time-invariant covariate
+mymodel3 <- rblimp(
+  data = data,
+  latent = 'RIx RIy',
+  ordinal = 'z1',
+  model = ' 
+    { v in x y, i in 1:4 } : [v][i]r = [v][i] - (mu[v][i] + RI[v]);
+    random.intercepts:
+    { RIx RIy } ~ z1;
+    RIx ~~ RIy;
+    x.models:
+    x1 ~ 1@mux1 RIx@1;
+    { i in 2:5 } : x[i] ~ 1@mux[i] RIx@1 x[i-1]r y[i-1]r;
+    y.models:
+    y1 ~ 1@muy1 RIy@1;
+    { i in 2:5 } : y[i] ~ 1@muy[i] RIy@1 y[i-1]r x[i-1]r;
+    covariances:
+    { i in 1:5 } : x[i] ~~ y[i];',
+  seed = 90291,
+  burn = 5000,
+  iter = 10000)
+
+output(mymodel3)
+posterior_plot(mymodel3)
+
+# random intercepts predicting distal outcome
+mymodel4 <- rblimp(
+  data = data,
+  latent = 'RIx RIy',
+  model = '
+    { v in x y, i in 1:4 } : [v][i]r = [v][i] - (mu[v][i] + RI[v]);
+    random.intercept:
+    RIx ~~ RIy;
+    x.models:
+    x1 ~ 1@mux1 RIx@1;
+    { i in 2:5 } : x[i] ~ 1@mux[i] RIx@1 x[i-1]r y[i-1]r;
+    y.models:
+    y1 ~ 1@muy1 RIy@1;
+    { i in 2:5 } : y[i] ~ 1@muy[i] RIy@1 y[i-1]r x[i-1]r;
+    covariances:
+    { i in 1:5 } : x[i] ~~ y[i];
+    distal.outcome:
+    z2 ~ RIx RIy',
+  seed = 90291,
+  burn = 5000,
+  iter = 10000)
+
+output(mymodel4)
+posterior_plot(mymodel4)
+
+# within-person variables predicting distal outcome
+mymodel5 <- rblimp(
+  data = data,
+  latent = 'RIx RIy',
+  model = '
+    { v in x y, i in 1:5 } : [v][i]r = [v][i] - (mu[v][i] + RI[v]);
+    random.intercept:
+    RIx ~~ RIy;
+    x.models:
+    x1 ~ 1@mux1 RIx@1;
+    { i in 2:5 } : x[i] ~ 1@mux[i] RIx@1 x[i-1]r y[i-1]r;
+    y.models:
+    y1 ~ 1@muy1 RIy@1;
+    { i in 2:5 } : y[i] ~ 1@muy[i] RIy@1 y[i-1]r x[i-1]r;
+    covariances:
+    { i in 1:5 } : x[i] ~~ y[i];
+    distal.outcome:
+    z2 ~ x1r y1r x2r y2r x3r y3r x4r y4r x5r y5r;',
+  seed = 90291,
+  burn = 5000,
+  iter = 10000)
+
+output(mymodel5)
+posterior_plot(mymodel5)

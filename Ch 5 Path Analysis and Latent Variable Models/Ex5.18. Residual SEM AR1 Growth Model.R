@@ -4,7 +4,7 @@ connect <- url('https://raw.githubusercontent.com/blimp-stats/rblimp-examples/ma
 data <- readRDS(connect); close(connect)
 
 # full model with occasion-specific residual effects
-mymodel <- rblimp(
+mymodel1 <- rblimp(
   data = data,
   latent = 'icept slope',
   model = '
@@ -29,11 +29,11 @@ mymodel <- rblimp(
   burn = 30000,
   iter = 20000)
 
-output(mymodel)
-posterior_plot(mymodel)
+output(mymodel1)
+posterior_plot(mymodel1)
 
 # simplified model with constrained paths
-mymodel <- rblimp(
+mymodel2 <- rblimp(
   data = data,
   latent = 'icept slope',
   model = '
@@ -56,3 +56,47 @@ mymodel <- rblimp(
   seed = 90291,
   burn = 20000,
   iter = 20000)
+
+output(mymodel2)
+posterior_plot(mymodel2)
+
+## Alternative shorthand specification 
+
+# full model with occasion-specific residual effects
+mymodel1 <- rblimp(
+  data = data,
+  latent = 'icept slope',
+  model = '
+    { i in 1:5 } : r_[i] = y[i] - (icept + ([i-1] * slope));
+    structural.model:
+    icept ~~ slope;
+    1 -> icept slope;
+    measurement.model:
+    y1 ~ 1@icept slope@0;
+    { i in 2:6 } : y[i] ~ 1@icept slope@[i-1] r_[i-1]@ac[i-1]',
+  waldtest = 'ac1 = ac2:ac5',
+  seed = 90291,
+  burn = 30000,
+  iter = 20000)
+
+output(mymodel1)
+posterior_plot(mymodel1)
+
+# simplified model with constrained paths
+mymodel2 <- rblimp(
+  data = data,
+  latent = 'icept slope',
+  model = '
+    { i in 1:5 } : r_[i] = y[i] - (icept + ([i-1] * slope));
+    structural.model:
+    icept ~~ slope;
+    1 -> icept slope;
+    measurement.model:
+    y1 ~ 1@icept slope@0;
+    { i in 2:6 } : y[i] ~ 1@icept slope@[i-1] r_[i-1]@ac',
+  seed = 90291,
+  burn = 20000,
+  iter = 20000)
+
+output(mymodel2)
+posterior_plot(mymodel2)

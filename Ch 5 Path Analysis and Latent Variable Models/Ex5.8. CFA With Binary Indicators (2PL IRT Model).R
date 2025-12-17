@@ -4,7 +4,7 @@ connect <- url('https://raw.githubusercontent.com/blimp-stats/rblimp-examples/ma
 data <- readRDS(connect); close(connect)
 
 # logistic model
-mymodel <- rblimp(
+mymodel1 <- rblimp(
   data = data,
   ordinal = 'y1:y6',
   latent = 'ability',
@@ -33,11 +33,11 @@ mymodel <- rblimp(
   burn = 2000,
   iter = 10000)
 
-output(mymodel)
-posterior_plot(mymodel)
+output(mymodel1)
+posterior_plot(mymodel1)
 
 # probit model
-mymodel <- rblimp(
+mymodel2 <- rblimp(
   data = data,
   ordinal = 'y1:y6',
   latent = 'ability',
@@ -66,5 +66,46 @@ mymodel <- rblimp(
   burn = 3000,
   iter = 10000)
 
-output(mymodel)
-posterior_plot(mymodel)
+output(mymodel2)
+posterior_plot(mymodel2)
+
+
+## Alternative shorthand specification 
+
+# logistic model
+mymodel1 <- rblimp(
+  data = data,
+  ordinal = 'y1:y6',
+  latent = 'ability',
+  model = '
+    ability ~ 1@0;
+    ability@1;
+    { i in 1:6 } : logit(y[i]) ~ 1@icept[i] ability@load[i];',
+  parameters = '
+    { i in 1:6 } : discrim[i] = load[i];
+    { i in 1:6 } : difficulty[i] = - icept[i] / load[i];',
+  seed = 90291,
+  burn = 2000,
+  iter = 10000)
+
+output(mymodel1)
+posterior_plot(mymodel1)
+
+# probit model
+mymodel2 <- rblimp(
+  data = data,
+  ordinal = 'y1:y6',
+  latent = 'ability',
+  model = '
+    ability ~ 1@0;
+    ability@1;
+    { i in 1:6 } : y[i] ~ 1@icept[i] ability@load[i];',
+  parameters = '
+    { i in 1:6 } : discrim[i] = load[i];
+    { i in 1:6 } : difficulty[i] = - icept[i] / load[i];',
+  seed = 90291,
+  burn = 3000,
+  iter = 10000)
+
+output(mymodel2)
+posterior_plot(mymodel2)
