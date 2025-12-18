@@ -67,13 +67,14 @@ mymodel1 <- rblimp(
   data = data,
   latent = 'icept slope',
   model = '
-    { i in 1:5 } : r_[i] = y[i] - (icept + ([i-1] * slope));
+    # define residuals
+    { i in 1:5 } : ry[i] = y[i] - (icept + ([i-1] * slope));
     structural.model:
     icept ~~ slope;
     1 -> icept slope;
     measurement.model:
     y1 ~ 1@icept slope@0;
-    { i in 2:6 } : y[i] ~ 1@icept slope@[i-1] r_[i-1]@ac[i-1]',
+    { i in 2:6 } : y[i] ~ 1@icept slope@[i-1] ry[i-1]@ac[i-1]',
   waldtest = 'ac1 = ac2:ac5',
   seed = 90291,
   burn = 30000,
@@ -87,13 +88,14 @@ mymodel2 <- rblimp(
   data = data,
   latent = 'icept slope',
   model = '
-    { i in 1:5 } : r_[i] = y[i] - (icept + ([i-1] * slope));
+    # define residuals
+    { i in 1:5 } : ry[i] = y[i] - (icept + ([i-1] * slope));
     structural.model:
     icept ~~ slope;
     1 -> icept slope;
     measurement.model:
     y1 ~ 1@icept slope@0;
-    { i in 2:6 } : y[i] ~ 1@icept slope@[i-1] r_[i-1]@ac',
+    { i in 2:6 } : y[i] ~ 1@icept slope@[i-1] ry[i-1]@ac',
   seed = 90291,
   burn = 20000,
   iter = 20000)
