@@ -6,7 +6,7 @@ data <- readRDS(connect); close(connect)
 mymodel <- rblimp(
    data = data,
    ordinal = 'd1 o1',
-   model = 'd1 o1 y1 x1 <-> d1 o1 y1 x1',
+   model = 'd1 o1 y1 x1 ~~ d1 o1 y1 x1',
    seed = 90291,
    burn = 30000,
    iter = 10000)

@@ -9,8 +9,8 @@ mymodel <- rblimp(
    ordinal = 'x1:x7 d1 d2',
    model = '
    focal.model:
-   xscale = x1:+:x7; 
-   yscale ~  xscale d1 d2; 
+   sum_score = x1:+:x7; 
+   yscale ~  sum_score d1 d2; 
    predictor.model:
    x1:x7 d1 d2 ~ 1', 
    seed = 90291,
@@ -26,8 +26,8 @@ mymodel <- rblimp(
   ordinal = 'y1:y5 x1:x7 d1 d2',
   model = '
    focal.model:
-   xscale = x1:+:x7;
-   yscale ~  xscale d1 d2;
+   sum_score = x1:+:x7;
+   yscale ~  sum_score d1 d2;
    predictor.model:
    x1:x7 d1 d2 ~ 1; 
    auxiliary.models:
