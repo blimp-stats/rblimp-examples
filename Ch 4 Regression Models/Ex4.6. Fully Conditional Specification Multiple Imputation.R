@@ -11,9 +11,8 @@ mymodel <- rblimp_fcs(
    fixed = 'x1 d2',
    variables = 'y1 x1 d1 d2 n1 x2',
    seed = 90291,
-   burn = 1000,
-   iter = 1000,
-   chains = 20,
+   burn = 10000,
+   iter = 10000,
    nimps = 20)
 
 output(mymodel)

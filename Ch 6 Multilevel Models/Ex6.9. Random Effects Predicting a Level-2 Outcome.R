@@ -11,9 +11,8 @@ mymodel1 <- rblimp(
   randomeffect = 'beta0_j = y_i | 1 [level2id];
    beta1_j = y_i | x1_i [level2id]',
   fixed = 'd_j',
-  center = '
-   groupmean = x1_i;
-   grandmean = x2_i x3_j d_j',
+  center = 'groupmean = x1_i;
+   grandmean = x2_i x3_j',
   model = ' 
    focal.model:
    y_i ~ x1_i x2_i x3_j d_j | x1_i;
@@ -34,7 +33,7 @@ mymodel2 <- rblimp(
   latent = 'level2id = beta0_j beta1_j',
   fixed = 'd_j',
   center = 'groupmean = x1_i;
-   grandmean = x2_i x3_j d_j',
+   grandmean = x2_i x3_j',
   model = '
    level2.model:
    beta0_j ~ 1 x3_j d_j;

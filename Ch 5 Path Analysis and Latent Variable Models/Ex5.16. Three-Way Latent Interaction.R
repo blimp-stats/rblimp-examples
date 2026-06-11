@@ -10,48 +10,30 @@ mymodel <- rblimp(
   model = '
    y.model:
    latenty ~ latentx@b1 latentz@b2 latentm@b3 
-      latentx*latentz@b4 latentx*latentm@b5 latentz*latentm@b6 latentx*latentz*latentm@b7;
-   latenty ~~ latenty@1;
+     latentx*latentz@b4 latentx*latentm@b5 latentz*latentm@b6   
+     latentx*latentz*latentm@b7;
+   latenty@1;
    predictor.model:
    latentx latentz latentm ~~ latentx latentz latentm;
-   latentx ~~ latentx@1;
-   latentz ~~ latentz@1;
-   latentm ~~ latentm@1;
+   latentx@1;
+   latentz@1;
+   latentm@1;
    measurement.models:
    latentx -> x1@xload_prior x2:x10;
    latentz -> z1@zload_prior z2:z10;
    latentm -> m1@mload_prior m2:m10;
    latenty -> y1@yload_prior y2:y10',
-  parameters = 'xload_prior ~ truncate(0, Inf);
+  simple = 'latentx | latentm and latentz',
+  parameters = '
+   xload_prior ~ truncate(0, Inf);
    zload_prior ~ truncate(0, Inf);
    mload_prior ~ truncate(0, Inf);
-   yload_prior ~ truncate(0, Inf);
-   xbyz_mlow = b4 + b7 * (-1);
-   xbyz_mmean  = b4 + b7 * ( 0);
-   xbyz_mhigh = b4 + b7 * (+1)',
+   yload_prior ~ truncate(0, Inf);',
   seed = 90291,
-  burn = 20000,
-  iter = 50000)
+  burn = 50000,
+  iter = 50000
+)
 
 output(mymodel)
 posterior_plot(mymodel)
-
-# Johnson-Neyman regions of significance for two-way effects and values of the moderator
-params <- as.matrix(mymodel)
-
-(
-  jn_plot_func(
-    compute_condeff(
-      params[, 'latenty.regressed on.latentx*latentz'],        # Get b4
-      params[, 'latenty.regressed on.latentx*latentz*latentm'] # Get b7
-    ),
-    xrange = c(-3, 3)
-  )
-  + ggplot2::labs(
-    title = 'Johnson-Neyman Plot for `latentx` * `latentz` Moderated by `latentm`',
-    subtitle = 'Red area represents 0 within 95% interval',
-    y = 'latenty regressed on latentx * latentz',
-    x = 'latentm'
-  )
-  + ggplot2::theme_minimal()
-)
+simple_plot(latenty ~ latentx | latentm + latentz, mymodel)

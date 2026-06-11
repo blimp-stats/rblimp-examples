@@ -11,7 +11,7 @@ mymodel <- rblimp(
   center = 'x1 x2',
   model = 'y ~ x1 x2 d',
   seed = 90291,
-  burn = 1000,
+  burn = 10000,
   iter = 10000)
 
 output(mymodel)
@@ -30,10 +30,9 @@ mymodel <- rblimp(
     pp_d1 = phi(b0 + b3);
     pp_diff = pp_d1 - pp_d0',
    seed = 90291,
-   burn = 1000,
+   burn = 10000,
    iter = 10000,  
-   nimps = 20,
-   chains = 20)
+   nimps = 20)
 
 output(mymodel)
 posterior_plot(mymodel, 'y')

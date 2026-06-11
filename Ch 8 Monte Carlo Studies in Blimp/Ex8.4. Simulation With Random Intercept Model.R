@@ -18,8 +18,8 @@ mymodel <- rblimp(
   clusterid = "level_2",
   model = "y ~ x z",
   seed = 198723,
-  burn = 5000,
-  iter = 5000
+  burn = 10000,
+  iter = 10000
 )
 
 output(mymodel)

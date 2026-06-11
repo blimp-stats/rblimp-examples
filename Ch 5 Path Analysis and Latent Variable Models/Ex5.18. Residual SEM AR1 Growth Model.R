@@ -17,8 +17,10 @@ mymodel1 <- rblimp(
    icept ~~ slope;
    1 -> icept slope;
    measurement.model:
-   { y1:y6 } ~ 1@icept;
+   icept -> y1@1 y2@1 y3@1 y4@1 y5@1 y6@1;
    slope -> y1@0 y2@1 y3@2 y4@3 y5@4 y6@5;
+   1 -> y1@0 y2@0 y3@0 y4@0 y5@0 y6@0;
+   # AR1 paths   
    y2 ~ ry1@ac1;
    y3 ~ ry2@ac2;
    y4 ~ ry3@ac3;
@@ -27,7 +29,7 @@ mymodel1 <- rblimp(
   waldtest = 'ac1 = ac2:ac5',
   seed = 90291,
   burn = 30000,
-  iter = 20000)
+  iter = 30000)
 
 output(mymodel1)
 posterior_plot(mymodel1)
@@ -46,8 +48,10 @@ mymodel2 <- rblimp(
    icept ~~ slope;
    1 -> icept slope;
    measurement.model:
-   { y1:y6 } ~ 1@icept;
+   icept -> y1@1 y2@1 y3@1 y4@1 y5@1 y6@1;
    slope -> y1@0 y2@1 y3@2 y4@3 y5@4 y6@5;
+   1 -> y1@0 y2@0 y3@0 y4@0 y5@0 y6@0;
+   # AR1 paths   
    y2 ~ ry1@ac;
    y3 ~ ry2@ac;
    y4 ~ ry3@ac;
@@ -60,7 +64,7 @@ mymodel2 <- rblimp(
 output(mymodel2)
 posterior_plot(mymodel2)
 
-## Alternative shorthand specification 
+## alternative specification with looping structure
 
 # full model with occasion-specific residual effects
 mymodel1 <- rblimp(
@@ -78,7 +82,7 @@ mymodel1 <- rblimp(
   waldtest = 'ac1 = ac2:ac5',
   seed = 90291,
   burn = 30000,
-  iter = 20000)
+  iter = 30000)
 
 output(mymodel1)
 posterior_plot(mymodel1)

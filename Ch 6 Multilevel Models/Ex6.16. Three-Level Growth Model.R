@@ -13,7 +13,7 @@ mymodel1 <- rblimp(
    simple = 'time_i | d_k',
    seed = 90291,
    burn = 15000,
-   iter = 10000)
+   iter = 15000)
 
 output(mymodel1)
 posterior_plot(mymodel1,'y_i')
@@ -29,7 +29,7 @@ mymodel2 <- rblimp(
   simple = 'time_i | d_k',
   seed = 90291,
   burn = 15000,
-  iter = 10000)
+  iter = 15000)
 
 output(mymodel2)
 posterior_plot(mymodel2,'y_i')

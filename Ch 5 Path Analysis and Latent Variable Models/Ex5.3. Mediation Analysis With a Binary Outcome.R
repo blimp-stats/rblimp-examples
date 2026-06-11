@@ -8,7 +8,6 @@ mymodel1 <- rblimp(
   data = data,
   ordinal = 'y x',
   model = '
-   mediation.model:
    m ~ 1@m_icept x@alpha;
    m@m_resvar;
    y ~ 1@y_icept m@beta x@tau;',

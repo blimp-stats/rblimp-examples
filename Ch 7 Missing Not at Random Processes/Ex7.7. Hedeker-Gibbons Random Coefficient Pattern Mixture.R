@@ -23,7 +23,7 @@ mymodel <- rblimp(
    beta2 = p_obs * beta2_obs + p_mis * (beta2_obs + beta2_dif);
    beta3 = p_obs * beta3_obs + p_mis * (beta3_obs + beta3_dif)',
   seed = 90291,
-  burn = 5000,
+  burn = 10000,
   iter = 10000)
 
 output(mymodel)

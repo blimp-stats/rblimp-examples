@@ -2,10 +2,12 @@ library(rblimp)
 
 connect <- url('https://raw.githubusercontent.com/blimp-stats/rblimp-examples/main/Data/Ex7.4.RDS', 'rb')
 data <- readRDS(connect); close(connect)
+names(data)[match(c("d1","d2", "d3", "d4", "d5","d6"), names(data))] <- c("m1","m2", "m3", "m4", "m5","m6")
+
 
 mymodel <- rblimp(
   data = data,
-  ordinal = 'd2 d3 d4 d5 d6',
+  ordinal = 'm2:m6',
   latent = 'icept slope',
   model = '
    structural.model:
@@ -13,12 +15,9 @@ mymodel <- rblimp(
    slope ~ 1;
    icept <-> slope;
    measurement.model:
-   y1 ~ 1@0 icept@1 slope@0;
-   y2 ~ 1@0 icept@1 slope@1;
-   y3 ~ 1@0 icept@1 slope@2;
-   y4 ~ 1@0 icept@1 slope@3;
-   y5 ~ 1@0 icept@1 slope@4;
-   y6 ~ 1@0 icept@1 slope@5;
+   icept -> y1@1 y2@1 y3@1 y4@1 y5@1 y6@1;
+   slope -> y1@0 y2@1 y3@2 y4@3 y5@4 y6@5;
+   1 -> y1@0 y2@0 y3@0 y4@0 y5@0 y6@0;
    y1 ~~ y1@vconstraint;
    y2 ~~ y2@vconstraint;
    y3 ~~ y3@vconstraint;
@@ -26,14 +25,14 @@ mymodel <- rblimp(
    y5 ~~ y5@vconstraint;
    y6 ~~ y6@vconstraint;
    dropout.model:
-   d2 ~ y1@marconstraint y2@mnarconstraint;
-   d3 ~ y2@marconstraint y3@mnarconstraint;
-   d4 ~ y3@marconstraint y4@mnarconstraint;
-   d5 ~ y4@marconstraint y5@mnarconstraint;
-   d6 ~ y5@marconstraint y6@mnarconstraint',
+   m2 ~ y1@marconstraint y2@mnarconstraint;
+   m3 ~ y2@marconstraint y3@mnarconstraint;
+   m4 ~ y3@marconstraint y4@mnarconstraint;
+   m5 ~ y4@marconstraint y5@mnarconstraint;
+   m6 ~ y5@marconstraint y6@mnarconstraint',
   seed = 90291,
   burn = 100000,
-  iter = 10000)
+  iter = 100000)
 
 output(mymodel)
 posterior_plot(mymodel)

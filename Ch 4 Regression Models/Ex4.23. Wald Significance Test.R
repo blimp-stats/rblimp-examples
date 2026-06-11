@@ -11,7 +11,7 @@ mymodel <- rblimp(
    model = 'y ~ x1@b1 x2@b2 d@b3',
    waldtest = list('b1:b3 = 0', 'b1:b2 = 0', 'b1 = b2'),
    seed = 90291,
-   burn = 1000,
+   burn = 10000,
    iter = 10000)
 
 output(mymodel)

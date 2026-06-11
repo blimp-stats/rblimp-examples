@@ -8,9 +8,9 @@ mymodel <- rblimp(
    nominal = 'y',
    fixed = 'x2 x3',
    center = 'x1 x2 x3',
-   model = 'logit(y) ~ x1 x2 x3',
+   model = 'y ~ x1 x2 x3',
    seed = 90291,
-   burn = 2000,
+   burn = 10000,
    iter = 10000)
 
 output(mymodel)

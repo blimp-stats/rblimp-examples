@@ -11,9 +11,9 @@ mymodel <- rblimp(
    model = 'y_i ~ time_i d_j time_i*d_j | time_i',
    simple = 'time_i | d_j',
    seed = 90291,
-   burn = 2000,
+   burn = 10000,
    iter = 10000)
 
 output(mymodel)
 posterior_plot(mymodel,'y_i')
-simple_plot(y_i ~ time_i | d_j.1, mymodel)
+simple_plot(y_i ~ time_i | d_j, mymodel)

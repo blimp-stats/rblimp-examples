@@ -19,7 +19,7 @@ mymodel1 <- rblimp(
    hazard.5 = exp(alpha5) / (1 + exp(alpha5));
    hazard.6 = exp(alpha6) / (1 + exp(alpha6))',
   seed = 90291,
-  burn = 2000,
+  burn = 10000,
   iter = 10000)
 
 output(mymodel1)
@@ -36,7 +36,7 @@ mymodel2 <- rblimp(
    logit(y_i) ~ 1@0 (time_i==1)@alpha1 (time_i==2)@alpha2 (time_i==3)@alpha3
       (time_i==4)@alpha4 (time_i==5)@alpha5 (time_i==6)@alpha6 d_j x_j | 1@0',
   seed = 90291,
-  burn = 2000,
+  burn = 10000,
   iter = 10000)
 
 output(mymodel2)

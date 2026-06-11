@@ -19,8 +19,8 @@ mymodel <- rblimp(
   latent = "level_2 = b0j",
   model = "y ~ 1@b0j (y.lag - b0j)",
   seed = 198723,
-  burn = 5000,
-  iter = 5000
+  burn = 10000,
+  iter = 10000
 )
 
 output(mymodel)

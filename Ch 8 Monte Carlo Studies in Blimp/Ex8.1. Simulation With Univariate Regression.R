@@ -11,8 +11,8 @@ mymodel <- rblimp(
   ),
   model = "y ~ x",
   seed = 10972,
-  burn = 5000,
-  iter = 5000
+  burn = 10000,
+  iter = 10000
 )
 
 output(mymodel)

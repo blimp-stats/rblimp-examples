@@ -10,15 +10,14 @@ mymodel <- rblimp_fcs(
   ordinal = 'x1:x6 y1:y6',
   variables = 'x1:x6 y1:y6',
   seed = 90291,
-  burn = 25000,
-  iter = 10000,
-  chains = 20,
+  burn = 40000,
+  iter = 40000,
   nimps = 20)
 
 output(mymodel)
 
 # inspect variable names
-names(mymodel@imputations[[1]])
+names(mymodel)
 
 # mitml list
 implist <- as.mitml(mymodel)

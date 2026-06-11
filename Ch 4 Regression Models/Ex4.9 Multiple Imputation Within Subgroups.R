@@ -9,9 +9,8 @@ mymodel <- rblimp_fcs(
    ordinal = 'd',
    variables = 'a1:a3 y x d',
    seed = 90291,
-   burn = 1000,
+   burn = 10000,
    iter = 10000,
-   chains = 20,
    nimps = 20
    ) |> by_group('group')
 
@@ -26,8 +25,7 @@ names(implist[[1]])
 
 # pooled grand means
 mean_x <- mean(unlist(lapply(implist, function(data) mean(data$x))))
-mean_d <- mean(unlist(lapply(implist, function(data) mean(data$d))))
 
 # analysis and pooling with mitml
-results <- with(implist, lm(y ~ I(x - mean_x) + group + I(x - mean_x):group + I(d - mean_d)))
+results <- with(implist, lm(y ~ I(x - mean_x) + group + I(x - mean_x):group + d))
 testEstimates(results, extra.pars = T, df.com = 295)

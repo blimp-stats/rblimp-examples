@@ -8,13 +8,13 @@ mymodel <- rblimp(
    ordinal = 'd',
    nominal = 'm',
    fixed = 'm',
-   center = 'x d',
+   center = 'x',
    model = 'y ~ x m x*m d',
    simple = 'x | m',
    seed = 90291,
-   burn = 1000,
+   burn = 10000,
    iter = 10000)
 
 output(mymodel)
 posterior_plot(mymodel,'y')
-simple_plot(y ~ x | m.1, mymodel)
+simple_plot(y ~ x | m, mymodel)

@@ -17,7 +17,7 @@ mymodel1 <- rblimp(
    missingness.model:
    y.missing ~ y;',
   seed = 90291,
-  burn = 1000,
+  burn = 10000,
   iter = 10000)
 
 output(mymodel1)
@@ -37,7 +37,7 @@ mymodel2 <- rblimp(
    missingness.model:
    y.missing ~ y d1',
   seed = 90291,
-  burn = 2500,
+  burn = 10000,
   iter = 10000)
 
 output(mymodel2)

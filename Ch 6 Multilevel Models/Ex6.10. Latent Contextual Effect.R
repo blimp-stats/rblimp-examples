@@ -12,7 +12,7 @@ mymodel <- rblimp(
   model = 'y_i ~ x_i@beta_w x_i.mean@beta_b | x_i',
   parameters = 'contextual = beta_b - beta_w',
   seed = 90291,
-  burn = 5000,
+  burn = 10000,
   iter = 10000)
 
 output(mymodel)

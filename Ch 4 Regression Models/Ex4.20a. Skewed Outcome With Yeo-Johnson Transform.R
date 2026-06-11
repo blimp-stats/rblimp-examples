@@ -10,7 +10,7 @@ mymodel <- rblimp(
    center = 'x1 x2',
    model = 'yjt(y - 9) ~ x1 x2 d',
    seed = 90291,
-   burn = 1000,
+   burn = 10000,
    iter = 10000)
 
 output(mymodel)

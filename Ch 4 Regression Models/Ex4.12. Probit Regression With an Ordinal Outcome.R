@@ -11,7 +11,7 @@ mymodel <- rblimp(
    model = 'y ~ x1 x2 d',
    seed = 90291,
    burn = 20000,
-   iter = 10000)
+   iter = 20000)
 
 output(mymodel)
 posterior_plot(mymodel, 'y')

@@ -11,7 +11,7 @@ mymodel <- rblimp(
    y ~ m@beta x;', 
   parameters = 'indirect = alpha * beta',
   seed = 90291,
-  burn = 1000,
+  burn = 10000,
   iter = 10000)
 
 output(mymodel)

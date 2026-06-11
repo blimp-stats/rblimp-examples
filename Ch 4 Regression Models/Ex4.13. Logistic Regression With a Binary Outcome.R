@@ -12,7 +12,7 @@ mymodel <- rblimp(
    center = 'x1 x2',
    model = 'logit(y) ~ x1 x2 d',
    seed = 90291,
-   burn = 2000,
+   burn = 10000,
    iter = 10000)
 
 output(mymodel)
@@ -31,16 +31,15 @@ mymodel <- rblimp(
    pp_d1 = exp(b0 + b3) / (1 + exp(b0 + b3));
    pp_diff = pp_d1 - pp_d0',
   seed = 90291,
-  burn = 2000,
+  burn = 10000,
   iter = 10000,
-  nimps = 20,
-  chains = 20)
+  nimps = 20)
 
 output(mymodel)
 posterior_plot(mymodel, 'y')
 
 # inspect variable names
-names(mymodel@imputations[[1]])
+names(mymodel)
 
 # compare marginal predicted probabilities by group
 implist <- as.mitml(mymodel)

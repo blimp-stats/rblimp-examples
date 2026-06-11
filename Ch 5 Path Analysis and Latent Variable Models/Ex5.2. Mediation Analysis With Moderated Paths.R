@@ -9,19 +9,21 @@ mymodel <- rblimp(
   fixed = 'd',
   model = '
    mediation.model:
-   m ~ x@alpha d x*d@alphamod;
-   y ~ m@beta x d m*d@betamod;',
+   m ~ x@alpha d x*d@alphadif;
+   y ~ m@beta x d m*d@betadif;',
   parameters = '
-   indirect.d0 = alpha * beta;
-   indirect.d1 = ( alpha + alphamod ) * ( beta + betamod )',
+     indirect_d0 = alpha * beta;
+     indirect_d1 = ( alpha + alphadif ) * ( beta + betadif );
+     indirect_dif = indirect_d1 - indirect_d0;',
   simple = 'x | d',
   seed = 90291,
-  burn = 1000,
+  burn = 10000,
   iter = 10000)
 
 output(mymodel)
-posterior_plot(mymodel,'indirect.d0')
-posterior_plot(mymodel,'indirect.d1')
+posterior_plot(mymodel,'indirect_d0')
+posterior_plot(mymodel,'indirect_d1')
+posterior_plot(mymodel,'indirect_dif')
 posterior_plot(mymodel)
 simple_plot(m ~ x | d, mymodel)
 simple_plot(y ~ x | d, mymodel)

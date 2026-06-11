@@ -14,7 +14,7 @@ mymodel <- rblimp(
    predictor.model:
    x1:x7 d1 d2 ~ 1', 
    seed = 90291,
-   burn = 5000,
+   burn = 10000,
    iter = 10000)
 
 output(mymodel)
@@ -34,7 +34,7 @@ mymodel <- rblimp(
    y1:y5 ~ yscale',
   seed = 90291,
   burn = 20000,
-  iter = 10000)
+  iter = 20000)
 
 output(mymodel)
 posterior_plot(mymodel, 'yscale')

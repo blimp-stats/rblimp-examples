@@ -12,9 +12,8 @@ mymodel <- rblimp(
     grandmean = x2_i',
    model = 'y_i ~ x1_i x2_i | x1_i',
    seed = 90291,
-   burn = 5000,
+   burn = 10000,
    iter = 10000,
-   chains = 20,
    nimps = 20)
 
 output(mymodel)
@@ -24,38 +23,13 @@ posterior_plot(mymodel,'y_i')
 residual_plot(mymodel,'y_i')
 
 # inspect variable names
-names(mymodel@average_imp)
+names(mymodel)
 
-# plot average level-1 residuals
-ggplot(as.data.frame(mymodel@average_imp), aes(x = y_i.residual)) +
-  geom_density(fill = "steelblue", alpha = 0.6) +
-  labs(title = "Density Plot of Level-1 Residuals",
-       x = "Level-1 Residual",
-       y = "Density")
-
-# qqplot of level-1 residuals
-ggplot(as.data.frame(mymodel@average_imp), aes(sample = y_i.residual)) +
-  stat_qq() +
-  stat_qq_line(color = "red") +
-  labs(title = "QQ Plot of Level-1 Residuals",
-       x = "Theoretical Quantiles",
-       y = "Sample Quantiles")
-
-# plot average level-2 residuals
-ggplot(as.data.frame(mymodel@average_imp), aes(x = y_i.level2id.)) +
-  geom_density(fill = "steelblue", alpha = 0.6) +
-  labs(title = "Density Plot of Level-2 Residuals",
-       x = "Level-2 Residual",
-       y = NULL)
-
-# qqplot of level-2 residuals
-ggplot(as.data.frame(mymodel@average_imp), aes(sample = y_i.level2id.)) +
-  stat_qq() +
-  stat_qq_line(color = "red") +
-  labs(title = "QQ Plot of Level-2 Residuals",
-       x = "Theoretical Quantiles",
-       y = "Sample Quantiles")
-
-
-
-
+# unlist imputed data sets into a stacked file
+dat2plot <- do.call(rbind, mymodel@imputations)
+# plot level-1 residuals
+hist(dat2plot$y_i.residual,breaks = 50)
+# plot random intercepts
+hist(dat2plot$"y_i[level2id]",breaks = 50)
+# plot random slopes
+hist(dat2plot$"y_i$x1_i[level2id]",breaks = 50)

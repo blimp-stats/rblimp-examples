@@ -14,10 +14,9 @@ mymodel <- rblimp(
    slope ~ 1 d;
    icept ~~ slope;
    measurement.model:
-   y0 ~ 1@0 icept@1 slope@0;
-   y1 ~ 1@0 icept@1 slope@1;
-   y3 ~ 1@0 icept@1 slope@3;
-   y6 ~ 1@0 icept@1 slope@6;
+   icept -> y0@1 y1@1 y3@1 y6@1;
+   slope -> y0@0 y1@1 y3@3 y6@6;
+   1 -> y0@0 y1@0 y3@0 y6@0;
    y0@resvar;
    y1@resvar;
    y3@resvar;

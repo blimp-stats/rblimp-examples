@@ -30,7 +30,7 @@ mymodel1 <- rblimp(
    difficulty5 = - icept5 / load5;
    difficulty6 = - icept6 / load6',
   seed = 90291,
-  burn = 2000,
+  burn = 10000,
   iter = 10000)
 
 output(mymodel1)
@@ -63,7 +63,7 @@ mymodel2 <- rblimp(
    difficulty5 = - icept5 / load5;
    difficulty6 = - icept6 / load6',
   seed = 90291,
-  burn = 3000,
+  burn = 10000,
   iter = 10000)
 
 output(mymodel2)
@@ -85,7 +85,7 @@ mymodel1 <- rblimp(
     { i in 1:6 } : discrim[i] = load[i];
     { i in 1:6 } : difficulty[i] = - icept[i] / load[i];',
   seed = 90291,
-  burn = 2000,
+  burn = 10000,
   iter = 10000)
 
 output(mymodel1)
@@ -104,7 +104,7 @@ mymodel2 <- rblimp(
     { i in 1:6 } : discrim[i] = load[i];
     { i in 1:6 } : difficulty[i] = - icept[i] / load[i];',
   seed = 90291,
-  burn = 3000,
+  burn = 10000,
   iter = 10000)
 
 output(mymodel2)

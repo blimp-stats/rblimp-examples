@@ -11,7 +11,7 @@ mymodel <- rblimp(
    center = 'x1 x2',
    model = 'y ~ d1 d2 x1 x2',
    seed = 90291,
-   burn = 5000,
+   burn = 10000,
    iter = 10000)
 
 output(mymodel)

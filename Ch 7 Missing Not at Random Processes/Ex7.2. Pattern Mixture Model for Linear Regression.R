@@ -7,7 +7,7 @@ data <- readRDS(connect); close(connect)
 mymodel <- rblimp(
   data = data,
   ordinal = 'd1 d2 ymis',
-  center = 'x1 d2',
+  center = 'x1',
   transform = 'ymis = ismissing(y)',
   model = '
    focal.model:
@@ -26,7 +26,7 @@ mymodel <- rblimp(
    b0_mis = b0obs + b0diff;
    b0 = (b0_obs * p_obs) + (b0_mis * p_mis)',
   seed = 90291,
-  burn = 2000,
+  burn = 10000,
   iter = 10000)
 
 output(mymodel)
@@ -37,7 +37,7 @@ mymodel <- rblimp(
   data = data,
   ordinal = 'd1 d2 m.y',
   transform = 'm.y = ismissing(y)',
-  center = 'x1 d2',
+  center = 'x1',
   model = '
    focal.model:
    y ~ 1@b0obs m.y@b0diff d1@b1obs d1*m.y@b1diff d2 x1;
@@ -59,7 +59,7 @@ mymodel <- rblimp(
    b0 = (b0.obs * p.obs) + (b0.mis * p.mis);
    b1 = (b1.obs * p.obs) + (b1.mis * p.mis)',
   seed = 90291,
-  burn = 2000,
+  burn = 10000,
   iter = 10000)
 
 output(mymodel)
