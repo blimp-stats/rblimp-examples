@@ -5,15 +5,15 @@ data <- readRDS(connect); close(connect)
 
 # full covariance matrix at each level
 mymodel1 <- rblimp(
-   data = data,
-   nominal = 'd_k',
-   clusterid = 'level2id level3id',
-   fixed = 'time_i d_k',
-   model = 'y_i ~ time_i d_k time_i*d_k | time_i',
-   simple = 'time_i | d_k',
-   seed = 90291,
-   burn = 15000,
-   iter = 15000)
+  data = data,
+  nominal = 'd_k',
+  clusterid = 'level2id level3id',
+  fixed = 'time_i d_k',
+  model = 'y_i ~ time_i d_k time_i*d_k | time_i',
+  simple = 'time_i | d_k',
+  seed = 90291,
+  burn = 15000,
+  iter = 15000)
 
 output(mymodel1)
 posterior_plot(mymodel1,'y_i')

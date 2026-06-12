@@ -10,12 +10,12 @@ mymodel <- rblimp(
   transform = 'm_i = ismissing(y_i)',
   fixed = 'd_j',
   center = 'groupmean = x1_i;
-   grandmean = x2_i x3_j',
-  model = ' 
-   focal.model:
-   y_i ~ x1_i x2_i x3_j d_j | x1_i;
-   missingness.model:
-   m_i ~ y_i x1_i',
+  grandmean = x2_i x3_j',
+  model = '
+    focal.model:
+    y_i ~ x1_i x2_i x3_j d_j | x1_i;
+    missingness.model:
+    m_i ~ y_i x1_i',
   seed = 90291,
   burn = 20000,
   iter = 20000)

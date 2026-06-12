@@ -7,9 +7,9 @@ mymodel <- rblimp(
   data = data,
   ordinal = 'm',
   center = 'x',
-  model = ' 
-   m ~ x@alpha;
-   y ~ m.latent@beta x;',
+  model = '
+    m ~ x@alpha;
+    y ~ m.latent@beta x;',
   parameters = 'indirect = alpha * beta',
   seed = 90291,
   burn = 10000,

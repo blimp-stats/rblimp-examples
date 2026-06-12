@@ -7,8 +7,8 @@ mymodel <- rblimp(
   data = data,
   clusterid = 'level2id',
   center = '
-   groupmean = x_i;
-   grandmean = x_i.mean',
+  groupmean = x_i;
+  grandmean = x_i.mean',
   model = 'y_i ~ x_i@beta_w x_i.mean@beta_b | x_i',
   parameters = 'contextual = beta_b - beta_w',
   seed = 90291,

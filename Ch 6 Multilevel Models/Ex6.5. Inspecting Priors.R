@@ -5,16 +5,16 @@ data <- readRDS(connect); close(connect)
 
 # prior 2 (the default)
 mymodel1 <- rblimp(
-   data = data,
-   clusterid = 'level2id',
-   center = '
-    groupmean = x1_i;
-    grandmean = x2_i',
-   model = 'y_i ~ x1_i x2_i | x1_i',
-   seed = 90291,
-   burn = 10000,
-   iter = 10000,
-   options = 'prior2')
+  data = data,
+  clusterid = 'level2id',
+  center = '
+  groupmean = x1_i;
+  grandmean = x2_i',
+  model = 'y_i ~ x1_i x2_i | x1_i',
+  seed = 90291,
+  burn = 10000,
+  iter = 10000,
+  options = 'prior2')
 
 output(mymodel1)
 posterior_plot(mymodel,'y_i')
@@ -24,8 +24,8 @@ mymodel2 <- rblimp(
   data = data,
   clusterid = 'level2id',
   center = '
-   groupmean = x1_i;
-   grandmean = x2_i',
+  groupmean = x1_i;
+  grandmean = x2_i',
   model = 'y_i ~ x1_i x2_i | x1_i',
   seed = 90291,
   burn = 10000,
@@ -40,8 +40,8 @@ mymodel3 <- rblimp(
   data = data,
   clusterid = 'level2id',
   center = '
-   groupmean = x1_i;
-   grandmean = x2_i',
+  groupmean = x1_i;
+  grandmean = x2_i',
   model = 'y_i ~ x1_i x2_i | x1_i',
   seed = 90291,
   burn = 10000,
@@ -57,13 +57,13 @@ mymodel4 <- rblimp(
   clusterid = 'level2id',
   latent = 'level2id = beta0_j beta1_j',
   center = '
-   groupmean = x1_i;
-   grandmean = x2_i',
+  groupmean = x1_i;
+  grandmean = x2_i',
   model = '
-   beta1_j ~ 1;
-   beta0_j ~~ beta1_j;
-   focal.model:
-   y_i ~ 1@beta0_j x1_i@beta1_j x2_i',
+    beta1_j ~ 1;
+    beta0_j ~~ beta1_j;
+    focal.model:
+    y_i ~ 1@beta0_j x1_i@beta1_j x2_i',
   seed = 90291,
   burn = 10000,
   iter = 10000,

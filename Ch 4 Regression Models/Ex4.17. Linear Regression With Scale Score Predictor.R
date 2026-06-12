@@ -5,17 +5,17 @@ data <- readRDS(connect); close(connect)
 
 # sum score as predictor
 mymodel <- rblimp(
-   data = data,
-   ordinal = 'x1:x7 d1 d2',
-   model = '
-   focal.model:
-   sum_score = x1:+:x7; 
-   yscale ~  sum_score d1 d2; 
-   predictor.model:
-   x1:x7 d1 d2 ~ 1', 
-   seed = 90291,
-   burn = 10000,
-   iter = 10000)
+  data = data,
+  ordinal = 'x1:x7 d1 d2',
+  model = '
+    focal.model:
+    xscale = x1:+:x7;
+    yscale ~  xscale d1 d2;
+    predictor.model:
+    x1:x7 d1 d2 ~ 1',
+  seed = 90291,
+  burn = 10000,
+  iter = 10000)
 
 output(mymodel)
 posterior_plot(mymodel, 'yscale')
@@ -25,13 +25,13 @@ mymodel <- rblimp(
   data = data,
   ordinal = 'y1:y5 x1:x7 d1 d2',
   model = '
-   focal.model:
-   sum_score = x1:+:x7;
-   yscale ~  sum_score d1 d2;
-   predictor.model:
-   x1:x7 d1 d2 ~ 1; 
-   auxiliary.models:
-   y1:y5 ~ yscale',
+    focal.model:
+    xscale = x1:+:x7;
+    yscale ~  xscale d1 d2;
+    predictor.model:
+    x1:x7 d1 d2 ~ 1;
+    auxiliary.models:
+    y1:y5 ~ yscale',
   seed = 90291,
   burn = 20000,
   iter = 20000)

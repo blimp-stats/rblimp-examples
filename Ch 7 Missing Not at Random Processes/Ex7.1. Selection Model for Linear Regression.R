@@ -9,13 +9,13 @@ mymodel1 <- rblimp(
   ordinal = 'd1 d2',
   fixed = 'd1 d2',
   center = 'x1',
-  model = ' 
-   focal.model:
-   y ~ d1 d2 x1;
-   auxiliary.model:
-   x2 x3 ~ y d1 d2 x1
-   missingness.model:
-   y.missing ~ y;',
+  model = '
+    focal.model:
+    y ~ d1 d2 x1;
+    auxiliary.model:
+    x2 x3 ~ y d1 d2 x1
+      missingness.model:
+    y.missing ~ y;',
   seed = 90291,
   burn = 10000,
   iter = 10000)
@@ -29,13 +29,13 @@ mymodel2 <- rblimp(
   ordinal = 'd1 d2',
   fixed = 'd1 d2',
   center = 'x1',
-  model = ' 
-   focal.model:
-   y ~ d1 d2 x1;
-   auxiliary.model:
-   x2 x3 ~ y d1 d2 x1
-   missingness.model:
-   y.missing ~ y d1',
+  model = '
+    focal.model:
+    y ~ d1 d2 x1;
+    auxiliary.model:
+    x2 x3 ~ y d1 d2 x1
+      missingness.model:
+    y.missing ~ y d1',
   seed = 90291,
   burn = 10000,
   iter = 10000)

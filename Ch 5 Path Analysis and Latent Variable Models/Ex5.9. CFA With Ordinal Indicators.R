@@ -7,16 +7,17 @@ mymodel <- rblimp(
   data = data,
   ordinal = 'x1:x6 y1:y6',
   latent = 'latenty latentx',
-  model = ' 
-   latent.model:
-   latentx@1;
-   latenty@1;
-   latentx ~~ latenty;
-   measurement.model:
-   latentx -> x1@xload_prior x2:x6;
-   latenty -> y1@yload_prior y2:y6',
-  parameters = 'xload_prior ~ truncate(0, Inf);
-   yload_prior ~ truncate(0, Inf)',
+  model = '
+    latent.model:
+    latentx@1;
+    latenty@1;
+    latentx ~~ latenty;
+    measurement.model:
+    latentx -> x1@xload_prior x2:x6;
+    latenty -> y1@yload_prior y2:y6',
+  parameters = '
+    xload_prior ~ truncate(0, Inf);
+    yload_prior ~ truncate(0, Inf)',
   seed = 90291,
   burn = 50000,
   iter = 50000)

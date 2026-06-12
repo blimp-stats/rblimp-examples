@@ -5,7 +5,7 @@ connect <- url('https://raw.githubusercontent.com/blimp-stats/rblimp-examples/ma
 data <- readRDS(connect); close(connect)
 
 mymodel <- rblimp(
-   data = data,
+  data = data,
   ordinal = 'd',
   fixed = 'd',
   center = 'x1 x2',

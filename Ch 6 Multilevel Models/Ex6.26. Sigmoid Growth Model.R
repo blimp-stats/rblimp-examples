@@ -14,8 +14,8 @@ mymodel <- rblimp(
     es_j ~ intercept@beta0_j;
     var(es_j) ~ 1@0 # fix variance of each study
       (study==1)*log_varj@1
-      (study==2)*log_varj@1 
-      (study==3)*log_varj@1 
+      (study==2)*log_varj@1
+      (study==3)*log_varj@1
       (study==4)*log_varj@1
       (study==5)*log_varj@1
       (study==6)*log_varj@1
@@ -39,7 +39,7 @@ mymodel <- rblimp(
 
 output(mymodel)
 
-## Alternative shorthand specification 
+## Alternative shorthand specification
 
 # random effects meta analysis
 mymodel <- rblimp(
@@ -51,7 +51,7 @@ mymodel <- rblimp(
     beta0_j ~ intercept;
     es_j ~ intercept@beta0_j;
     var(es_j) ~ 1@0; # fix variance of each study
-    { i in 1:19 } : var(es_j) ~ (study==[i])@log_varj;',
+      { i in 1:19 } : var(es_j) ~ (study==[i])@log_varj;',
   seed = 90291,
   burn = 10000,
   iter = 10000

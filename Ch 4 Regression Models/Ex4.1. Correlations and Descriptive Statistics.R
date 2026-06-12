@@ -5,12 +5,12 @@ data <- readRDS(connect); close(connect)
 
 # correlations via multivariate distribution
 mymodel <- rblimp(
-   data = data,
-   model = '
-   x1 y1 y2 ~~ x1 y1 y2',
-   seed = 90291,
-   burn = 10000,
-   iter = 10000)
+  data = data,
+  model = '
+    x1 y1 y2 ~~ x1 y1 y2',
+  seed = 90291,
+  burn = 10000,
+  iter = 10000)
 
 output(mymodel)
 posterior_plot(mymodel)
@@ -19,7 +19,7 @@ posterior_plot(mymodel)
 mymodel <- rblimp(
   data = data,
   model = '
-   x1 y1 y2 ~~ x1 y1 y2',
+    x1 y1 y2 ~~ x1 y1 y2',
   seed = 90291,
   burn = 10000,
   iter = 10000,

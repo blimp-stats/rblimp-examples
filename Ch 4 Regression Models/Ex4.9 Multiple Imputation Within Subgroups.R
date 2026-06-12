@@ -5,14 +5,14 @@ connect <- url('https://raw.githubusercontent.com/blimp-stats/rblimp-examples/ma
 data <- readRDS(connect); close(connect)
 
 mymodel <- rblimp_fcs(
-   data = data,
-   ordinal = 'd',
-   variables = 'a1:a3 y x d',
-   seed = 90291,
-   burn = 10000,
-   iter = 10000,
-   nimps = 20
-   ) |> by_group('group')
+  data = data,
+  ordinal = 'd',
+  variables = 'a1:a3 y x d',
+  seed = 90291,
+  burn = 10000,
+  iter = 10000,
+  nimps = 20
+  ) |> by_group('group')
 
 # view output
 lapply(mymodel,output)

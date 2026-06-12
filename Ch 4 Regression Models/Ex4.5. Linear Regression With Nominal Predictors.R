@@ -20,15 +20,15 @@ posterior_plot(mymodel, 'y')
 
 # dummy codes entered manually
 mymodel <- rblimp(
-   data = data,
-   ordinal = 'd',
-   nominal = 'n',
-   fixed = 'x',
-   center = 'x',
-   model = 'y ~ x d n.2 n.3 n.4',
-   seed = 90291,
-   burn = 10000,
-   iter = 10000)
+  data = data,
+  ordinal = 'd',
+  nominal = 'n',
+  fixed = 'x',
+  center = 'x',
+  model = 'y ~ x d n.2 n.3 n.4',
+  seed = 90291,
+  burn = 10000,
+  iter = 10000)
 
 output(mymodel)
 posterior_plot(mymodel, 'y')

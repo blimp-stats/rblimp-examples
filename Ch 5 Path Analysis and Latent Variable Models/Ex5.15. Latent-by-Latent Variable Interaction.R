@@ -6,22 +6,23 @@ data <- readRDS(connect); close(connect)
 mymodel <- rblimp(
   data = data,
   latent = 'latentx latentm latenty',
-  model = ' 
-   structural.model:
-   latenty ~ latentx latentm latentx*latentm;
-   latenty ~~ latenty@1;
-   predictor.model:
-   latentx ~~ latentx@1;
-   latentm ~~ latentm@1;
-   latentx ~~ latentm;
-   measurement.models:
-   latentx -> x1@xload_prior x2:x3;
-   latentm -> m1@mload_prior m2:m3;
-   latenty -> y1@yload_prior y2:y3',
+  model = '
+    structural.model:
+    latenty ~ latentx latentm latentx*latentm;
+    latenty ~~ latenty@1;
+    predictor.model:
+    latentx ~~ latentx@1;
+    latentm ~~ latentm@1;
+    latentx ~~ latentm;
+    measurement.models:
+    latentx -> x1@xload_prior x2:x3;
+    latentm -> m1@mload_prior m2:m3;
+    latenty -> y1@yload_prior y2:y3',
   simple = 'latentx | latentm',
-  parameters = 'xload_prior ~ truncate(0, Inf);
-   mload_prior ~ truncate(0, Inf);
-   yload_prior ~ truncate(0, Inf);',
+  parameters = '
+    xload_prior ~ truncate(0, Inf);
+    mload_prior ~ truncate(0, Inf);
+    yload_prior ~ truncate(0, Inf);',
   seed = 90291,
   burn = 10000,
   iter = 10000)

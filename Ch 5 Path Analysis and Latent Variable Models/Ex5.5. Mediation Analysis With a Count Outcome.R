@@ -7,14 +7,14 @@ mymodel <- rblimp(
   data = data,
   ordinal = 'x',
   count = 'y',
-  model = ' 
-   m ~ 1@m_icept x@alpha; 
-   y ~ 1@y_icept m@beta x@tau',
+  model = '
+    m ~ 1@m_icept x@alpha;
+    y ~ 1@y_icept m@beta x@tau',
   parameters = '
-   x0 = 0; 
-   x1 = 1; 
-   ab_at_x0 = alpha * (beta*exp(y_icept + beta*m_icept + tau*x0)); 
-   ab_at_x1 = alpha * (beta*exp(y_icept + beta*(m_icept + alpha*x1) + tau*x1))',
+    x0 = 0;
+    x1 = 1;
+    ab_at_x0 = alpha * (beta*exp(y_icept + beta*m_icept + tau*x0));
+    ab_at_x1 = alpha * (beta*exp(y_icept + beta*(m_icept + alpha*x1) + tau*x1))',
   seed = 90291,
   burn = 10000,
   iter = 10000)

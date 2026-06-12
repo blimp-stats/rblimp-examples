@@ -10,14 +10,15 @@ mymodel1 <- rblimp(
   clusterid = 'level2id',
   fixed = 'time_i',
   model = '
-   logit(y_i) ~ 1@0 (time_i==1)@alpha1 (time_i==2)@alpha2 (time_i==3)@alpha3
+    logit(y_i) ~ 1@0 (time_i==1)@alpha1 (time_i==2)@alpha2 (time_i==3)@alpha3
       (time_i==4)@alpha4 (time_i==5)@alpha5 (time_i==6)@alpha6 | 1@0',
-  parameters = 'hazard.1 = exp(alpha1) / (1 + exp(alpha1));
-   hazard.2 = exp(alpha2) / (1 + exp(alpha2));
-   hazard.3 = exp(alpha3) / (1 + exp(alpha3));
-   hazard.4 = exp(alpha4) / (1 + exp(alpha4));
-   hazard.5 = exp(alpha5) / (1 + exp(alpha5));
-   hazard.6 = exp(alpha6) / (1 + exp(alpha6))',
+  parameters = '
+    hazard.1 = exp(alpha1) / (1 + exp(alpha1));
+    hazard.2 = exp(alpha2) / (1 + exp(alpha2));
+    hazard.3 = exp(alpha3) / (1 + exp(alpha3));
+    hazard.4 = exp(alpha4) / (1 + exp(alpha4));
+    hazard.5 = exp(alpha5) / (1 + exp(alpha5));
+    hazard.6 = exp(alpha6) / (1 + exp(alpha6))',
   seed = 90291,
   burn = 10000,
   iter = 10000)
@@ -33,7 +34,7 @@ mymodel2 <- rblimp(
   fixed = 'time_i',
   center = 'grandmean = x_j',
   model = '
-   logit(y_i) ~ 1@0 (time_i==1)@alpha1 (time_i==2)@alpha2 (time_i==3)@alpha3
+    logit(y_i) ~ 1@0 (time_i==1)@alpha1 (time_i==2)@alpha2 (time_i==3)@alpha3
       (time_i==4)@alpha4 (time_i==5)@alpha5 (time_i==6)@alpha6 d_j x_j | 1@0',
   seed = 90291,
   burn = 10000,

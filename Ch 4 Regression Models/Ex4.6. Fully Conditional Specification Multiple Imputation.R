@@ -5,15 +5,15 @@ connect <- url('https://raw.githubusercontent.com/blimp-stats/rblimp-examples/ma
 data <- readRDS(connect); close(connect)
 
 mymodel <- rblimp_fcs(
-   data = data,
-   ordinal = 'd1 d2',
-   nominal = 'n1',
-   fixed = 'x1 d2',
-   variables = 'y1 x1 d1 d2 n1 x2',
-   seed = 90291,
-   burn = 10000,
-   iter = 10000,
-   nimps = 20)
+  data = data,
+  ordinal = 'd1 d2',
+  nominal = 'n1',
+  fixed = 'x1 d2',
+  variables = 'y1 x1 d1 d2 n1 x2',
+  seed = 90291,
+  burn = 10000,
+  iter = 10000,
+  nimps = 20)
 
 output(mymodel)
 

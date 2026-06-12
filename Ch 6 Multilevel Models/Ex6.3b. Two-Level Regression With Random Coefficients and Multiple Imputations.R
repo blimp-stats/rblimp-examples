@@ -6,17 +6,17 @@ connect <- url('https://raw.githubusercontent.com/blimp-stats/rblimp-examples/ma
 data <- readRDS(connect); close(connect)
 
 mymodel <- rblimp(
-   data = data,
-   clusterid = 'level2id',
-   ordinal = 'd_j',
-   fixed = 'd_j',
-   center = 'groupmean = x1_i;
-    grandmean = x2_i x3_j',
-   model = 'y_i ~ x1_i x2_i x3_j d_j | x1_i',
-   seed = 90291,
-   burn = 10000,
-   iter = 10000,
-   nimps = 20)
+  data = data,
+  clusterid = 'level2id',
+  ordinal = 'd_j',
+  fixed = 'd_j',
+  center = 'groupmean = x1_i;
+  grandmean = x2_i x3_j',
+  model = 'y_i ~ x1_i x2_i x3_j d_j | x1_i',
+  seed = 90291,
+  burn = 10000,
+  iter = 10000,
+  nimps = 20)
 
 output(mymodel)
 posterior_plot(mymodel,'y_i')
@@ -37,7 +37,7 @@ for (i in 1:length(implist)) {
 }
 
 # analysis and pooling with mitml
-results <- with(implist, 
-                lmer('y_i ~ x1cwc_i + I(x2_i - mean_x2) + I(x3_j - mean_x3) + d_j + (1 + x1cwc_i|level2id)', 
+results <- with(implist,
+                lmer('y_i ~ x1cwc_i + I(x2_i - mean_x2) + I(x3_j - mean_x3) + d_j + (1 + x1cwc_i|level2id)',
                 REML = T))
 testEstimates(results, extra.pars = T)

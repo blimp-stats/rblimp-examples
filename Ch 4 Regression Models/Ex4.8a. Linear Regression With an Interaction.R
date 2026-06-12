@@ -4,16 +4,16 @@ connect <- url('https://raw.githubusercontent.com/blimp-stats/rblimp-examples/ma
 data <- readRDS(connect); close(connect)
 
 mymodel <- rblimp(
-   data = data,
-   ordinal = 'd',
-   nominal = 'm',
-   fixed = 'm',
-   center = 'x',
-   model = 'y ~ x m x*m d',
-   simple = 'x | m',
-   seed = 90291,
-   burn = 10000,
-   iter = 10000)
+  data = data,
+  ordinal = 'd',
+  nominal = 'm',
+  fixed = 'm',
+  center = 'x',
+  model = 'y ~ x m x*m d',
+  simple = 'x | m',
+  seed = 90291,
+  burn = 10000,
+  iter = 10000)
 
 output(mymodel)
 posterior_plot(mymodel,'y')

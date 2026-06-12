@@ -19,20 +19,20 @@ posterior_plot(mymodel, 'y')
 
 # analysis with predicted probabilities
 mymodel <- rblimp(
-   data = data,
-   ordinal = 'y d',
-   fixed = 'd',
-   center = 'x1 x2',
-   model = 'y ~ 1@b0 x1 x2 d@b3',
-   parameters = '
+  data = data,
+  ordinal = 'y d',
+  fixed = 'd',
+  center = 'x1 x2',
+  model = 'y ~ 1@b0 x1 x2 d@b3',
+  parameters = '
     # conditional predicted probabilities
     pp_d0 = phi(b0);
     pp_d1 = phi(b0 + b3);
     pp_diff = pp_d1 - pp_d0',
-   seed = 90291,
-   burn = 10000,
-   iter = 10000,  
-   nimps = 20)
+  seed = 90291,
+  burn = 10000,
+  iter = 10000,
+  nimps = 20)
 
 output(mymodel)
 posterior_plot(mymodel, 'y')

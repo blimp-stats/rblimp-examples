@@ -5,16 +5,16 @@ connect <- url('https://raw.githubusercontent.com/blimp-stats/rblimp-examples/ma
 data <- readRDS(connect); close(connect)
 
 mymodel <- rblimp(
-   data = data,
-   clusterid = 'level2id',
-   center = '
-    groupmean = x1_i;
-    grandmean = x2_i',
-   model = 'y_i ~ x1_i x2_i | x1_i',
-   seed = 90291,
-   burn = 10000,
-   iter = 10000,
-   nimps = 20)
+  data = data,
+  clusterid = 'level2id',
+  center = '
+  groupmean = x1_i;
+  grandmean = x2_i',
+  model = 'y_i ~ x1_i x2_i | x1_i',
+  seed = 90291,
+  burn = 10000,
+  iter = 10000,
+  nimps = 20)
 
 output(mymodel)
 posterior_plot(mymodel,'y_i')

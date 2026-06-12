@@ -8,19 +8,19 @@ mymodel <- rblimp(
   data = data,
   clusterid = 'level2id',
   timeid = 'time',
-  latent = 'level2id = xmean_j ymean_j phi1_j phi2_j phi3_j phi4_j yvarlog_j xvarlog_j',
+  latent = 'level2id = xmean_j ymean_j phi_yj phi_xj beta_yj beta_xj logvar_yj logvar_xj',
   model = '
-   level2.models:
-   1 -> xmean_j ymean_j phi1_j phi2_j phi3_j phi4_j;
-   xmean_j ~~ ymean_j;
-   level1.models:
-   x_i ~ 1@xmean_j (x_i.lag - xmean_j)@phi2_j (y_i.lag - ymean_j)@phi3_j;
-   y_i ~ 1@ymean_j (y_i.lag - ymean_j)@phi1_j (x_i.lag - xmean_j)@phi4_j;
-   x_i ~~ y_i;
-   variance.model:
-   1 -> xvarlog_j yvarlog_j;
-   var(y_i) ~ 1@yvarlog_j;
-   var(x_i) ~ 1@xvarlog_j;',
+    level2.models:
+    1 -> xmean_j ymean_j phi_yj phi_xj beta_yj beta_xj;
+    xmean_j ~~ ymean_j;
+    level1.models:
+    x_i ~ 1@xmean_j (x_i.lag - xmean_j)@phi_xj (y_i.lag - ymean_j)@beta_yj;
+    y_i ~ 1@ymean_j (y_i.lag - ymean_j)@phi_yj (x_i.lag - xmean_j)@beta_xj;
+    x_i ~~ y_i;
+    variance.model:
+    1 -> logvar_xj logvar_yj;
+    var(y_i) ~ 1@logvar_yj;
+    var(x_i) ~ 1@logvar_xj;',
   seed = 90291,
   burn = 20000,
   iter = 20000)
