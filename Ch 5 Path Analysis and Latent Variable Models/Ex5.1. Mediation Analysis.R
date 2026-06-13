@@ -6,7 +6,6 @@ data <- readRDS(connect); close(connect)
 mymodel <- rblimp(
   data = data,
   model = '
-    mediation.model:
     m ~ x@alpha;
     y ~ m@beta x;',
   parameters = 'indirect = alpha * beta',

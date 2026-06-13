@@ -12,7 +12,7 @@ mymodel <- rblimp(
     latentx@1;
     latenty@1;
     latentx ~~ latenty;
-    measurement.model:
+    measurement.models:
     latentx -> x1@xload_prior x2:x6;
     latenty -> y1@yload_prior y2:y6',
   parameters = '

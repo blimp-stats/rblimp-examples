@@ -3,12 +3,10 @@ library(rblimp)
 connect <- url('https://raw.githubusercontent.com/blimp-stats/rblimp-examples/main/Data/Ex5.19.RDS', 'rb')
 data <- readRDS(connect); close(connect)
 
-# basic riclpm
 mymodel1 <- rblimp(
   data = data,
   latent = 'etax etay',
   model = '
-    # definition variables for residuals
     rx1 = x1 - (mux1 + etax);
     rx2 = x2 - (mux2 + etax);
     rx3 = x3 - (mux3 + etax);
@@ -45,13 +43,11 @@ mymodel1 <- rblimp(
 output(mymodel1)
 posterior_plot(mymodel1)
 
-# time-varying covariate
 mymodel2 <- rblimp(
   data = data,
   ordinal = 'z1',
   latent = 'etax etay',
   model = '
-    # definition variables for residuals
     rx1 = x1 - (mux1 + etax + z1*a1);
     rx2 = x2 - (mux2 + etax + z1*a2);
     rx3 = x3 - (mux3 + etax + z1*a3);
@@ -88,13 +84,11 @@ mymodel2 <- rblimp(
 output(mymodel2)
 posterior_plot(mymodel2)
 
-# time-invariant covariate
 mymodel3 <- rblimp(
   data = data,
   latent = 'etax etay',
   ordinal = 'z1',
   model = '
-    # definition variables for residuals
     rx1 = x1 - (mux1 + etax);
     rx2 = x2 - (mux2 + etax);
     rx3 = x3 - (mux3 + etax);
@@ -133,12 +127,10 @@ mymodel3 <- rblimp(
 output(mymodel3)
 posterior_plot(mymodel3)
 
-# random intercepts predicting distal outcome
 mymodel4 <- rblimp(
   data = data,
   latent = 'etax etay',
   model = '
-    # definition variables for residuals
     rx1 = x1 - (mux1 + etax);
     rx2 = x2 - (mux2 + etax);
     rx3 = x3 - (mux3 + etax);
@@ -177,12 +169,10 @@ mymodel4 <- rblimp(
 output(mymodel4)
 posterior_plot(mymodel4)
 
-# within-person variables predicting distal outcome
 mymodel5 <- rblimp(
   data = data,
   latent = 'etax etay',
   model = '
-    # definition variables for residuals
     rx1 = x1 - (mux1 + etax);
     rx2 = x2 - (mux2 + etax);
     rx3 = x3 - (mux3 + etax);
@@ -223,10 +213,8 @@ mymodel5 <- rblimp(
 output(mymodel5)
 posterior_plot(mymodel5)
 
-## Alternative shorthand specification
 
-# basic riclpm
-mymodel1 <- rblimp(
+mymodel6 <- rblimp(
   data = data,
   latent = 'etax etay',
   model = '
@@ -245,11 +233,10 @@ mymodel1 <- rblimp(
   burn = 10000,
   iter = 10000)
 
-output(mymodel1)
-posterior_plot(mymodel1)
+output(mymodel6)
+posterior_plot(mymodel6)
 
-# time-varying covariate
-mymodel2 <- rblimp(
+mymodel7 <- rblimp(
   data = data,
   ordinal = 'z1',
   latent = 'etax etay',
@@ -269,11 +256,10 @@ mymodel2 <- rblimp(
   burn = 10000,
   iter = 10000)
 
-output(mymodel2)
-posterior_plot(mymodel2)
+output(mymodel7)
+posterior_plot(mymodel7)
 
-# time-invariant covariate
-mymodel3 <- rblimp(
+mymodel8 <- rblimp(
   data = data,
   latent = 'etax etay',
   ordinal = 'z1',
@@ -294,11 +280,10 @@ mymodel3 <- rblimp(
   burn = 10000,
   iter = 10000)
 
-output(mymodel3)
-posterior_plot(mymodel3)
+output(mymodel8)
+posterior_plot(mymodel8)
 
-# random intercepts predicting distal outcome
-mymodel4 <- rblimp(
+mymodel9 <- rblimp(
   data = data,
   latent = 'etax etay',
   model = '
@@ -319,11 +304,10 @@ mymodel4 <- rblimp(
   burn = 10000,
   iter = 10000)
 
-output(mymodel4)
-posterior_plot(mymodel4)
+output(mymodel9)
+posterior_plot(mymodel9)
 
-# within-person variables predicting distal outcome
-mymodel5 <- rblimp(
+mymodel10 <- rblimp(
   data = data,
   latent = 'etax etay',
   model = '
@@ -344,5 +328,5 @@ mymodel5 <- rblimp(
   burn = 10000,
   iter = 10000)
 
-output(mymodel5)
-posterior_plot(mymodel5)
+output(mymodel10)
+posterior_plot(mymodel10)

@@ -6,7 +6,7 @@ data <- readRDS(connect); close(connect)
 mymodel <- rblimp(
   data = data,
   clusterid = 'level2id',
-  weights = 'level1wgt level2wgt',
+  weight = 'level1wgt level2wgt',
   model = 'y_i ~ x1_i x2_i x3_i',
   seed = 90291,
   burn = 10000,

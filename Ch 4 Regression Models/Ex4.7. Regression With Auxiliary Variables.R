@@ -3,8 +3,7 @@ library(rblimp)
 connect <- url('https://raw.githubusercontent.com/blimp-stats/rblimp-examples/main/Data/Ex4.7.RDS', 'rb')
 data <- readRDS(connect); close(connect)
 
-# manual sequential specification of auxiliary variables
-mymodel <- rblimp(
+mymodel1 <- rblimp(
   data = data,
   ordinal = 'd a3',
   fixed = 'd',
@@ -20,8 +19,7 @@ mymodel <- rblimp(
   burn = 10000,
   iter = 10000)
 
-# automatic sequential specification
-mymodel <- rblimp(
+mymodel2 <- rblimp(
   data = data,
   ordinal = 'd a3',
   fixed = 'd',
@@ -35,5 +33,5 @@ mymodel <- rblimp(
   burn = 10000,
   iter = 10000)
 
-output(mymodel)
-posterior_plot(mymodel, 'y')
+output(mymodel2)
+posterior_plot(mymodel2, 'y')

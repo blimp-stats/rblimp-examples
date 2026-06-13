@@ -9,8 +9,9 @@ mymodel <- rblimp(
   ordinal = 'd_j',
   latent = 'level2id = beta0_j beta1_j logvar_j',
   fixed = 'd_j',
-  center = 'groupmean = x1_i;
-  grandmean = x2_i x3_j',
+  center = '
+    groupmean = x1_i;
+    grandmean = x2_i x3_j',
   model = '
     level2.model:
     beta0_j ~ 1 x3_j d_j;

@@ -4,8 +4,7 @@ library(mitml)
 connect <- url('https://raw.githubusercontent.com/blimp-stats/rblimp-examples/main/Data/Ex4.13.RDS', 'rb')
 data <- readRDS(connect); close(connect)
 
-# standard analysis
-mymodel <- rblimp(
+mymodel1 <- rblimp(
   data = data,
   ordinal = 'y d',
   fixed = 'd',
@@ -15,18 +14,31 @@ mymodel <- rblimp(
   burn = 10000,
   iter = 10000)
 
-output(mymodel)
-posterior_plot(mymodel, 'y')
+output(mymodel1)
+posterior_plot(mymodel1, 'y')
 
-# analysis with predicted probabilities
-mymodel <- rblimp(
+mymodel2 <- rblimp(
   data = data,
-  ordinal = 'y d',
+  ordinal = 'd',
+  nominal = 'y',
   fixed = 'd',
   center = 'x1 x2',
-  model = 'logit(y) ~ 1@b0 x1 x2 d@b3',
+  model = 'y ~ x1 x2 d',
+  seed = 90291,
+  burn = 10000,
+  iter = 10000)
+
+output(mymodel2)
+posterior_plot(mymodel2, 'y')
+
+mymodel3 <- rblimp(
+  data = data,
+  ordinal = 'd',
+  nominal = 'y',
+  fixed = 'd',
+  center = 'x1 x2',
+  model = 'y ~ 1@b0 x1 x2 d@b3',
   parameters = '
-    # conditional predicted probabilities
     pp_d0 = exp(b0) / (1 + exp(b0));
     pp_d1 = exp(b0 + b3) / (1 + exp(b0 + b3));
     pp_diff = pp_d1 - pp_d0',
@@ -35,15 +47,13 @@ mymodel <- rblimp(
   iter = 10000,
   nimps = 20)
 
-output(mymodel)
-posterior_plot(mymodel, 'y')
+output(mymodel3)
+posterior_plot(mymodel3, 'y')
 
-# inspect variable names
-names(mymodel)
+names(mymodel3)
 
-# compare marginal predicted probabilities by group
-implist <- as.mitml(mymodel)
-results <- with(implist, lm(y.predicted ~ 0 + d + I(1 - d)))
+implist <- as.mitml(mymodel3)
+results <- with(implist, lm(y.1.probability ~ 0 + d + I(1 - d)))
 testEstimates(results)
 confint.mitml.testEstimates(testEstimates(results))
 testConstraints(results, constraints = c("d - `I(1 - d)`"))

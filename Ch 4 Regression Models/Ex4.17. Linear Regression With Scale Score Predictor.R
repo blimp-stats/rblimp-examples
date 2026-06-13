@@ -3,31 +3,29 @@ library(rblimp)
 connect <- url('https://raw.githubusercontent.com/blimp-stats/rblimp-examples/main/Data/Ex4.17.RDS', 'rb')
 data <- readRDS(connect); close(connect)
 
-# sum score as predictor
-mymodel <- rblimp(
+mymodel1 <- rblimp(
   data = data,
   ordinal = 'x1:x7 d1 d2',
   model = '
     focal.model:
     xscale = x1:+:x7;
-    yscale ~  xscale d1 d2;
+    yscale ~ xscale d1 d2;
     predictor.model:
     x1:x7 d1 d2 ~ 1',
   seed = 90291,
   burn = 10000,
   iter = 10000)
 
-output(mymodel)
-posterior_plot(mymodel, 'yscale')
+output(mymodel1)
+posterior_plot(mymodel1, 'yscale')
 
-# sum score as predictor and y items as auxiliary variables
-mymodel <- rblimp(
+mymodel2 <- rblimp(
   data = data,
   ordinal = 'y1:y5 x1:x7 d1 d2',
   model = '
     focal.model:
     xscale = x1:+:x7;
-    yscale ~  xscale d1 d2;
+    yscale ~ xscale d1 d2;
     predictor.model:
     x1:x7 d1 d2 ~ 1;
     auxiliary.models:
@@ -36,5 +34,5 @@ mymodel <- rblimp(
   burn = 20000,
   iter = 20000)
 
-output(mymodel)
-posterior_plot(mymodel, 'yscale')
+output(mymodel2)
+posterior_plot(mymodel2, 'yscale')

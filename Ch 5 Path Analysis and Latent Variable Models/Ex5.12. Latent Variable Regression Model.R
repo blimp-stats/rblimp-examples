@@ -5,7 +5,7 @@ data <- readRDS(connect); close(connect)
 
 mymodel <- rblimp(
   data = data,
-  ordinal = 'd y1:y6 m1:m7',
+  ordinal = 'd y1:y6 m1:m6',
   fixed = 'd',
   latent = 'latenty latentm',
   model = '

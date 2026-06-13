@@ -3,14 +3,13 @@ library(rblimp)
 connect <- url('https://raw.githubusercontent.com/blimp-stats/rblimp-examples/main/Data/Ex5.8.RDS', 'rb')
 data <- readRDS(connect); close(connect)
 
-# logistic model
 mymodel1 <- rblimp(
   data = data,
   ordinal = 'y1:y6',
   latent = 'ability',
   model = '
     ability ~ 1@0;
-    ability ~~ ability@1;
+    ability@1;
     logit(y1) ~ 1@icept1 ability@load1;
     logit(y2) ~ 1@icept2 ability@load2;
     logit(y3) ~ 1@icept3 ability@load3;
@@ -37,14 +36,13 @@ mymodel1 <- rblimp(
 output(mymodel1)
 posterior_plot(mymodel1)
 
-# probit model
 mymodel2 <- rblimp(
   data = data,
   ordinal = 'y1:y6',
   latent = 'ability',
   model = '
     ability ~ 1@0;
-    ability ~~ ability@1;
+    ability@1;
     y1 ~ 1@icept1 ability@load1;
     y2 ~ 1@icept2 ability@load2;
     y3 ~ 1@icept3 ability@load3;
@@ -71,11 +69,7 @@ mymodel2 <- rblimp(
 output(mymodel2)
 posterior_plot(mymodel2)
 
-
-## Alternative shorthand specification
-
-# logistic model
-mymodel1 <- rblimp(
+mymodel3 <- rblimp(
   data = data,
   ordinal = 'y1:y6',
   latent = 'ability',
@@ -90,11 +84,10 @@ mymodel1 <- rblimp(
   burn = 10000,
   iter = 10000)
 
-output(mymodel1)
-posterior_plot(mymodel1)
+output(mymodel3)
+posterior_plot(mymodel3)
 
-# probit model
-mymodel2 <- rblimp(
+mymodel4 <- rblimp(
   data = data,
   ordinal = 'y1:y6',
   latent = 'ability',
@@ -109,5 +102,5 @@ mymodel2 <- rblimp(
   burn = 10000,
   iter = 10000)
 
-output(mymodel2)
-posterior_plot(mymodel2)
+output(mymodel4)
+posterior_plot(mymodel4)

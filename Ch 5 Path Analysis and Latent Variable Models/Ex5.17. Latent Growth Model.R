@@ -17,7 +17,6 @@ mymodel <- rblimp(
     eta_icept -> y0@1 y1@1 y3@1 y6@1;
     eta_slope -> y0@0 y1@1 y3@3 y6@6;
     1 -> y0@0 y1@0 y3@0 y6@0;
-    # common residual variance
     y0@resvar;
     y1@resvar;
     y3@resvar;

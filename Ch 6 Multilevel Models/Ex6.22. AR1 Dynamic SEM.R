@@ -3,7 +3,6 @@ library(rblimp)
 connect <- url('https://raw.githubusercontent.com/blimp-stats/rblimp-examples/main/Data/MCNEISH_HAMAKER_2020.RDS', 'rb')
 data <- readRDS(connect); close(connect)
 
-# ar1 model (equation 4c)
 mymodel1 <- rblimp(
   data = data,
   clusterid = 'level2id',
@@ -21,7 +20,6 @@ mymodel1 <- rblimp(
 
 output(mymodel1)
 
-# location-scale model
 mymodel2 <- rblimp(
   data = data,
   clusterid = 'level2id',
@@ -41,7 +39,6 @@ mymodel2 <- rblimp(
 
 output(mymodel2)
 
-# time-invariant predictors
 mymodel3 <- rblimp(
   data = data,
   clusterid = 'level2id',

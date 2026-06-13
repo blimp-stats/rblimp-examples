@@ -3,16 +3,13 @@ library(rblimp)
 connect <- url('https://raw.githubusercontent.com/blimp-stats/rblimp-examples/main/Data/MCNEISH_HAMAKER_2020_TREND.RDS', 'rb')
 data <- readRDS(connect); close(connect)
 
-# detrended / residual DSEM (RDSEM)
 mymodel <- rblimp(
   data = data,
   clusterid = 'level2id',
   timeid = 'time',
   latent = 'level2id = ymean_j xmean_j phi_j beta_1j beta_2j',
   model = '
-    # definition variable for the predicted value of y_i.lag
     lag_yhat = ymean_j + (time - 1)*beta_2j + (x_i.lag - xmean_j)*beta_1j;
-    # definition variable for residual of y_i.lag, removing default dsem prior at t = 0
     lag_yres = ifelse(time <= 1, 0, y_i.lag - lag_yhat);
     level2.models:
     1 -> ymean_j xmean_j phi_j beta_1j beta_2j;

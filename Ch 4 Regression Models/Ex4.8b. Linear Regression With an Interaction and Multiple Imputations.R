@@ -21,12 +21,9 @@ output(mymodel)
 posterior_plot(mymodel, 'y')
 simple_plot(y ~ x | m, mymodel)
 
-# mitml list
 implist <- as.mitml(mymodel)
 
-# pooled grand means
 mean_x <- mean(unlist(lapply(implist, function(data) mean(data$x))))
 
-# analysis and pooling with mitml
 results <- with(implist, lm(y ~ I(x - mean_x) + m + I(x - mean_x):m + d))
 testEstimates(results, extra.pars = T, df.com = 295)

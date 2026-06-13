@@ -3,8 +3,7 @@ library(rblimp)
 connect <- url('https://raw.githubusercontent.com/blimp-stats/rblimp-examples/main/Data/Ex7.2.RDS', 'rb')
 data <- readRDS(connect); close(connect)
 
-# pattern-specific intercepts
-mymodel <- rblimp(
+mymodel1 <- rblimp(
   data = data,
   ordinal = 'd1 d2 ymis',
   center = 'x1',
@@ -30,11 +29,10 @@ mymodel <- rblimp(
   burn = 10000,
   iter = 10000)
 
-output(mymodel)
-posterior_plot(mymodel)
+output(mymodel1)
+posterior_plot(mymodel1)
 
-# pattern-specific intercepts and slopes
-mymodel <- rblimp(
+mymodel2 <- rblimp(
   data = data,
   ordinal = 'd1 d2 m.y',
   transform = 'm.y = ismissing(y)',
@@ -64,5 +62,5 @@ mymodel <- rblimp(
   burn = 10000,
   iter = 10000)
 
-output(mymodel)
-posterior_plot(mymodel)
+output(mymodel2)
+posterior_plot(mymodel2)

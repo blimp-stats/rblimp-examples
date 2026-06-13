@@ -5,10 +5,10 @@ data <- readRDS(connect); close(connect)
 
 mymodel <- rblimp(
   data = data,
-  ordinal = 'x1:x10 z1:z10 m1:m10 y1:y23',
+  ordinal = 'x1:x10 z1:z10 m1:m10 y1:y10',
   latent = 'latentx latentm latentz latenty',
   model = '
-    y.model:
+    structural.model:
     latenty ~ latentx@b1 latentz@b2 latentm@b3
       latentx*latentz@b4 latentx*latentm@b5 latentz*latentm@b6
       latentx*latentz*latentm@b7;

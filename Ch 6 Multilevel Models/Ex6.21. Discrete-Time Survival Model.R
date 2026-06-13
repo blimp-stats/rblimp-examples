@@ -3,7 +3,6 @@ library(rblimp)
 connect <- url('https://raw.githubusercontent.com/blimp-stats/rblimp-examples/main/Data/Ex6.21.RDS', 'rb')
 data <- readRDS(connect); close(connect)
 
-# basic survival model
 mymodel1 <- rblimp(
   data = data,
   ordinal = 'y_i',
@@ -26,7 +25,6 @@ mymodel1 <- rblimp(
 output(mymodel1)
 posterior_plot(mymodel1,'y_i')
 
-# add predictors
 mymodel2 <- rblimp(
   data = data,
   ordinal = 'y_i',

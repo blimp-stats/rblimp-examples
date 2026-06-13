@@ -18,9 +18,7 @@ mymodel <- rblimp_fcs(
 
 output(mymodel)
 
-# mitml list
 implist <- as.mitml(mymodel)
 
-# analysis and pooling with mitml
 results <- with(implist, lmer('y_i ~ x1_i + x2_i + d1_i + x3_j + d2_j + (1|level2id)', REML = T))
 testEstimates(results, extra.pars = T)

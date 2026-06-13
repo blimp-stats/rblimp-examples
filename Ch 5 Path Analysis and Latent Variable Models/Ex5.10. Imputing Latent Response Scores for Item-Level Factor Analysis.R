@@ -16,21 +16,16 @@ mymodel <- rblimp_fcs(
 
 output(mymodel)
 
-# inspect variable names
 names(mymodel)
 
-# mitml list
 implist <- as.mitml(mymodel)
 
-# specify cfa model with latent response imputations
 lavaan_model <- c(
   paste('ylatent =~', paste0('y', 1:6, '.latent', collapse = ' + ')),
   paste('xlatent =~', paste0('x', 1:6, '.latent', collapse = ' + ')),
   'ylatent ~~ xlatent', 'ylatent ~~ 1*ylatent','xlatent ~~ 1*xlatent')
 
-# fit model with semtools and lavaan
 results <- cfa.mi(lavaan_model, data = implist, estimator = "ml")
 summary(results, standardized = T, fit = T)
 
-# imputation-based modification indices
 modindices.mi(results, op = c("~~","=~"), minimum.value = 3, sort. = T)

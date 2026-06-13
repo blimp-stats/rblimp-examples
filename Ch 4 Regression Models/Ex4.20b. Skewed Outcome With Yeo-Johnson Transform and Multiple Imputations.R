@@ -18,26 +18,20 @@ mymodel <- rblimp(
 output(mymodel)
 posterior_plot(mymodel, 'y')
 
-# inspect variable names
-names(mymodel@imputations[[1]])
+names(mymodel)
 
-# mitml list
 implist <- as.mitml(mymodel)
 
-# plot raw and transformed scores
 dat2plot <- do.call(rbind, implist)
 hist(dat2plot$y,breaks = 20)
-hist(dat2plot$yjt.y.9.,breaks = 20)
+hist(dat2plot$y.yjt,breaks = 20)
 
-# pooled grand means
 mean_x1 <- mean(unlist(lapply(implist, function(data) mean(data$x1))))
 mean_x2 <- mean(unlist(lapply(implist, function(data) mean(data$x2))))
 
-# analyze skewed outcome
 results <- with(implist, lm(y ~ I(x1 - mean_x1)  + I(x2 - mean_x2) + d))
 testEstimates(results, extra.pars = T, df.com = 1996)
 
-# analyze normalized outcome
-results <- with(implist, lm(yjt.y.9. ~ I(x1 - mean_x1)  + I(x2 - mean_x2) + d))
+results <- with(implist, lm(y.yjt ~ I(x1 - mean_x1)  + I(x2 - mean_x2) + d))
 testEstimates(results, extra.pars = T, df.com = 1996)
 

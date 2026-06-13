@@ -3,27 +3,23 @@ library(rblimp)
 connect <- url('https://raw.githubusercontent.com/blimp-stats/rblimp-examples/main/Data/Ex4.1.RDS', 'rb')
 data <- readRDS(connect); close(connect)
 
-# correlations via multivariate distribution
-mymodel <- rblimp(
+mymodel1 <- rblimp(
   data = data,
-  model = '
-    x1 y1 y2 ~~ x1 y1 y2',
+  model = 'x1 y1 y2 ~~ x1 y1 y2',
   seed = 90291,
   burn = 10000,
   iter = 10000)
 
-output(mymodel)
-posterior_plot(mymodel)
+output(mymodel1)
+posterior_plot(mymodel1)
 
-# correlations via phantom latent variables
-mymodel <- rblimp(
+mymodel2 <- rblimp(
   data = data,
-  model = '
-    x1 y1 y2 ~~ x1 y1 y2',
+  model = 'x1 y1 y2 ~~ x1 y1 y2',
   seed = 90291,
   burn = 10000,
   iter = 10000,
   options = 'use_phantom')
 
-output(mymodel)
-posterior_plot(mymodel)
+output(mymodel2)
+posterior_plot(mymodel2)

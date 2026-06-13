@@ -3,8 +3,7 @@ library(rblimp)
 connect <- url('https://raw.githubusercontent.com/blimp-stats/rblimp-examples/main/Data/Ex6.25.RDS', 'rb')
 data <- readRDS(connect); close(connect)
 
-# random effects meta analysis
-mymodel <- rblimp(
+mymodel1 <- rblimp(
   data = data,
   transform = 'log_varj = ln(var_j)',
   clusterid = 'study',
@@ -12,7 +11,7 @@ mymodel <- rblimp(
   model = '
     beta0_j ~ 1;
     es_j ~ 1@beta0_j;
-    var(es_j) ~ 1@0 # fix variance of each study
+    var(es_j) ~ 1@0
       (study==1)*log_varj@1
       (study==2)*log_varj@1
       (study==3)*log_varj@1
@@ -37,12 +36,10 @@ mymodel <- rblimp(
   iter = 10000
 )
 
-output(mymodel)
+output(mymodel1)
 
-## Alternative shorthand specification
 
-# random effects meta analysis
-mymodel <- rblimp(
+mymodel2 <- rblimp(
   data = data,
   transform = 'log_varj = ln(var_j)',
   clusterid = 'study',
@@ -50,11 +47,11 @@ mymodel <- rblimp(
   model = '
     beta0_j ~ 1;
     es_j ~ 1@beta0_j;
-    var(es_j) ~ 1@0; # fix variance of each study
-      { i in 1:19 } : var(es_j) ~ (study==[i])@log_varj;',
+    var(es_j) ~ 1@0;
+    { i in 1:19 } : var(es_j) ~ (study==[i])@log_varj;',
   seed = 90291,
   burn = 10000,
   iter = 10000
 )
 
-output(mymodel)
+output(mymodel2)

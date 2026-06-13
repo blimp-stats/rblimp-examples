@@ -3,7 +3,6 @@ library(rblimp)
 connect <- url('https://raw.githubusercontent.com/blimp-stats/rblimp-examples/main/Data/MCNEISH_HAMAKER_2020.RDS', 'rb')
 data <- readRDS(connect); close(connect)
 
-# equation 7 and 8
 mymodel <- rblimp(
   data = data,
   clusterid = 'level2id',

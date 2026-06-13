@@ -10,6 +10,7 @@ mymodel <- rblimp(
   dropout = 'm_i = y_i',
   latent = 'level2id = beta0_j beta1_j',
   model = '
+    latent.variables:
     beta0_j ~~ beta1_j;
     growth.model:
     y_i ~ 1@beta0_j time_i@beta1_j;

@@ -17,12 +17,12 @@ mymodel <- rblimp(
     measurement.models:
     latentm -> m1@xload_prior m2:m6;
     latenty -> y1@yload_prior y2:y6',
-  parameters = '
-    xload_prior ~ truncate(0, Inf);
-    yload_prior ~ truncate(0, Inf)',
   simple = '
     x | d;
     latentm | d',
+  parameters = '
+    xload_prior ~ truncate(0, Inf);
+    yload_prior ~ truncate(0, Inf)',
   seed = 90291,
   burn = 50000,
   iter = 50000)

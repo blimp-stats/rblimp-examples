@@ -3,8 +3,7 @@ library(rblimp)
 connect <- url('https://raw.githubusercontent.com/blimp-stats/rblimp-examples/main/Data/Ex4.5.RDS', 'rb')
 data <- readRDS(connect); close(connect)
 
-# dummy codes entered as a set
-mymodel <- rblimp(
+mymodel1 <- rblimp(
   data = data,
   ordinal = 'd',
   nominal = 'n',
@@ -15,11 +14,10 @@ mymodel <- rblimp(
   burn = 10000,
   iter = 10000)
 
-output(mymodel)
-posterior_plot(mymodel, 'y')
+output(mymodel1)
+posterior_plot(mymodel1, 'y')
 
-# dummy codes entered manually
-mymodel <- rblimp(
+mymodel2 <- rblimp(
   data = data,
   ordinal = 'd',
   nominal = 'n',
@@ -30,5 +28,5 @@ mymodel <- rblimp(
   burn = 10000,
   iter = 10000)
 
-output(mymodel)
-posterior_plot(mymodel, 'y')
+output(mymodel2)
+posterior_plot(mymodel2, 'y')

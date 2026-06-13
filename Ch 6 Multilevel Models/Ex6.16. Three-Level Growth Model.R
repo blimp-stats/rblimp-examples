@@ -3,7 +3,6 @@ library(rblimp)
 connect <- url('https://raw.githubusercontent.com/blimp-stats/rblimp-examples/main/Data/Ex6.16.RDS', 'rb')
 data <- readRDS(connect); close(connect)
 
-# full covariance matrix at each level
 mymodel1 <- rblimp(
   data = data,
   nominal = 'd_k',
@@ -19,7 +18,6 @@ output(mymodel1)
 posterior_plot(mymodel1,'y_i')
 simple_plot(y_i ~ time_i | d_k.1, mymodel1)
 
-# only random intercepts at level-3
 mymodel2 <- rblimp(
   data = data,
   nominal = 'd_k',

@@ -17,12 +17,9 @@ mymodel <- rblimp_fcs(
 
 output(mymodel)
 
-# mitml list
 implist <- as.mitml(mymodel)
 
-# pooled grand means
 mean_x1 <- mean(unlist(lapply(implist, function(data) mean(data$x1))))
 
-# analysis and pooling with mitml
 results <- with(implist, lm(y1 ~ I(x1 - mean_x1) + d1 + factor(n1)))
 testEstimates(results, extra.pars = T, df.com = 1994)
