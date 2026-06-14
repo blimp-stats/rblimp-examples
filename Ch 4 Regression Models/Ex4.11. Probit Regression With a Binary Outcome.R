@@ -1,4 +1,5 @@
 library(rblimp)
+library(mitml)
 
 connect <- url('https://raw.githubusercontent.com/blimp-stats/rblimp-examples/main/Data/Ex4.11.RDS', 'rb')
 data <- readRDS(connect); close(connect)
